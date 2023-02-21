@@ -13,7 +13,8 @@ int	main(int arg, char **args)
 		c[i++] = Contact("", "", "", 0, "");
 	(void)arg;
 	(void)args;
+	i = 0;
 	while (pb.loop == 1)
-		pb.diary(c);
+		i = pb.diary(c, i);
 	return (0);
 }
