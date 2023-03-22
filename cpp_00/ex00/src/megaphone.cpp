@@ -3,9 +3,7 @@
 int	main(int arg, char **args)
 {
 	std::string 	s;
-	int		y;
 	int		i;
-	std::string		swapped;
 	if (arg <= 1)
 	{
 		std::cout << "At least one argument is required";
@@ -15,16 +13,16 @@ int	main(int arg, char **args)
 	i = 1;
 	while (args[i])
 		s += args[i++];
-	i = 0;
-	y = s.length();
-	while (s[i])
+	i = s.length() - 1;
+	while (i >= 0)
 	{
 		if (isupper(s[i]))
 				s[i] = tolower(s[i]);
 		else if (islower(s[i]))
 			s[i] = toupper(s[i]);
-		swapped[y--] = s[i++];
+		std::cout << s[i];
+		i--;
 	}
-	std::cout << s;
+	std::cout << "\n";
 	return (0);
 }
