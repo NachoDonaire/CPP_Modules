@@ -11,6 +11,7 @@ class	PhoneBook
 			void	diary();
 			void	add();
 			void	search();
+			void	error();
 			void	exit();
 };
 
@@ -20,22 +21,44 @@ PhoneBook::PhoneBook()
 	contactpos = 0;
 }
 
+void	PhoneBook::error()
+{
+	std::cout << "Fill the field please" << std::endl;
+	return ;
+}
+
 void	PhoneBook::add()
 {
 	std::string	inserted;
 
+	if (contactpos == 2)
+		contactpos = 0;
 	std::cout << "Introduce first name: \n";
 	std::cin >> inserted;
+	if (inserted == "")
+		return (error());
 	contacts[contactpos].first_name = inserted;
 	std::cout << "Introduce a second name: \n";
 	std::cin >> inserted;
+	if (inserted == "")
+		return (error());
 	contacts[contactpos].last_name = inserted;
+	std::cout <<  "Introduce a nickname: \n";
+	std::cin >> inserted;
+	if (inserted == "") 
+		return (error());
+	contacts[contactpos].nickname = inserted;
 	std::cout <<  "Introduce a phone number: \n";
 	std::cin >> inserted;
+	if (inserted == "")
+		return (error());
 	contacts[contactpos].phone_number = inserted;
 	std::cout <<  "Introduce contacts darkest secret: \n";
 	std::cin >> inserted;
+	if (inserted == "")
+		return (error());
 	contacts[contactpos].darkest_secret = inserted;
+	contactpos++;
 }
 
 void	PhoneBook::search()
@@ -44,9 +67,16 @@ void	PhoneBook::search()
 
 	std::cout <<  "Which contact would you like to see? (from 1 to 8)\n"; 
 	std::cin >> index;
-	std::cout << contacts[index].first_name;
-	std::cout << std::setw(20) << contacts[index - 1].first_name << "|" << std::endl;
+	if (index < 1 || index > 8)
+	{
+		std::cout << "Please, valid index. From 1 to 8." << std::endl;
+		return ;
+	}
+	index--;
+	std::cout << std::setw(20) << index  + 1<< "|"  << std::setw(10) << "|" << contacts[index].first_name << std::setw(10) << "|" << contacts[index].last_name << std::setw(10) << "|" <<  contacts[index].nickname <<  std::endl;
 }
+
+
 
 void	PhoneBook::exit()
 {
@@ -70,6 +100,7 @@ void	PhoneBook::diary()
 			exit();
 		else
 			std::cout << "Please, valid command\n";
-		std::cin >> command;
+		if (advise == 1)
+			std::cin >> command;
 	}
 }
