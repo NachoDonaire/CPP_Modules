@@ -13,6 +13,7 @@ class	PhoneBook
 			void	search();
 			void	error();
 			void	exit();
+			void	printeito(std::string s);
 };
 
 PhoneBook::PhoneBook()
@@ -30,40 +31,51 @@ void	PhoneBook::error()
 void	PhoneBook::add()
 {
 	std::string	inserted;
+	std::string	first_name;
+	std::string	last_name;
+	std::string	nickname;
+	std::string	phone_number;
+	std::string	darkest_secret;
 
-	if (contactpos == 2)
+	if (contactpos == 8)
 		contactpos = 0;
 	std::cout << "Introduce first name: \n";
-	std::cin >> inserted;
-	if (inserted == "")
+	std::cin >> first_name;
+	if (first_name == "")
 		return (error());
-	contacts[contactpos].first_name = inserted;
 	std::cout << "Introduce a second name: \n";
-	std::cin >> inserted;
-	if (inserted == "")
+	std::cin >> last_name;
+	if (last_name == "")
 		return (error());
-	contacts[contactpos].last_name = inserted;
-	std::cout <<  "Introduce a nickname: \n";
-	std::cin >> inserted;
-	if (inserted == "") 
+	std::cout << "Introduce a nickname: \n";
+	std::cin >> nickname;
+	if (nickname == "")
 		return (error());
-	contacts[contactpos].nickname = inserted;
-	std::cout <<  "Introduce a phone number: \n";
-	std::cin >> inserted;
-	if (inserted == "")
+	std::cout << "Introduce a phone number: \n";
+	std::cin >> phone_number;
+	if (phone_number == "")
 		return (error());
-	contacts[contactpos].phone_number = inserted;
-	std::cout <<  "Introduce contacts darkest secret: \n";
-	std::cin >> inserted;
-	if (inserted == "")
+	std::cout << "Introduce the darkest secret of your contact: \n";
+	std::cin >> darkest_secret;
+	if (darkest_secret == "")
 		return (error());
-	contacts[contactpos].darkest_secret = inserted;
+
+	contacts[contactpos] = Contact(first_name, last_name, nickname, phone_number, darkest_secret);
 	contactpos++;
 }
 
+void	PhoneBook::printeito(std::string s)
+{
+	if (s.length() > 10)
+		std::cout << std::setfill(' ') << std::setw(10) <<  s.replace(10, s.length(), ".") << "|" ;
+	else
+		std::cout << std::setfill(' ') << std::setw(10) << s << "|";
+}
+
+
 void	PhoneBook::search()
 {
-	int	index;
+	int			index;
 
 	std::cout <<  "Which contact would you like to see? (from 1 to 8)\n"; 
 	std::cin >> index;
@@ -73,7 +85,13 @@ void	PhoneBook::search()
 		return ;
 	}
 	index--;
-	std::cout << std::setw(20) << index  + 1<< "|"  << std::setw(10) << "|" << contacts[index].first_name << std::setw(10) << "|" << contacts[index].last_name << std::setw(10) << "|" <<  contacts[index].nickname <<  std::endl;
+	std::cout << std::setfill(' ') <<  std::setw(10) << index  + 1<< "|" ;
+	printeito(contacts[index].first_name);
+	printeito(contacts[index].last_name);
+	printeito(contacts[index].nickname);
+	std::cout << std::endl;
+	//std::cout << std::setfill(' ') << std::setw(10) <<  contacts[index].last_name << "|" ;
+	//std::cout << std::setfill(' ') << std::setw(10) <<  contacts[index].nickname <<  std::endl;
 }
 
 
