@@ -1,20 +1,4 @@
-#include "contact.hpp"
-
-class	PhoneBook
-{
-	private:
-			Contact	contacts[8];
-			int		advise;
-			int		contactpos;
-	public:
-			PhoneBook();
-			void	diary();
-			void	add();
-			void	search();
-			void	error();
-			void	exit();
-			void	printeito(std::string s);
-};
+#include "diary.hpp"
 
 PhoneBook::PhoneBook()
 {
@@ -77,7 +61,7 @@ void	PhoneBook::search()
 {
 	int			index;
 
-	std::cout <<  "Which contact would you like to see? (from 1 to 8)\n"; 
+	std::cout <<  "Which contact would you like to see? (from 1 to 8)\n";
 	std::cin >> index;
 	if (index < 1 || index > 8)
 	{
@@ -86,12 +70,8 @@ void	PhoneBook::search()
 	}
 	index--;
 	std::cout << std::setfill(' ') <<  std::setw(10) << index  + 1<< "|" ;
-	printeito(contacts[index].first_name);
-	printeito(contacts[index].last_name);
-	printeito(contacts[index].nickname);
+	contacts[index].printeito();
 	std::cout << std::endl;
-	//std::cout << std::setfill(' ') << std::setw(10) <<  contacts[index].last_name << "|" ;
-	//std::cout << std::setfill(' ') << std::setw(10) <<  contacts[index].nickname <<  std::endl;
 }
 
 
