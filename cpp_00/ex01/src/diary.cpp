@@ -8,8 +8,6 @@ int	main(int arg, char **args)
 	if (!arg || !args)
 		return (0);
 
-	std::cin >> tuker;
-	std::cout << tuker;
-	//pb.diary();
+	pb.diary();
 	return (0);
 }

@@ -24,23 +24,23 @@ void	PhoneBook::add()
 	if (contactpos == 8)
 		contactpos = 0;
 	std::cout << "Introduce first name: \n";
-	std::cin >> first_name;
+	std::getline(std::cin, first_name);
 	if (first_name == "")
 		return (error());
 	std::cout << "Introduce a second name: \n";
-	std::cin >> last_name;
+	std::getline(std::cin, last_name);
 	if (last_name == "")
 		return (error());
 	std::cout << "Introduce a nickname: \n";
-	std::cin >> nickname;
+	std::getline(std::cin, nickname);
 	if (nickname == "")
 		return (error());
 	std::cout << "Introduce a phone number: \n";
-	std::cin >> phone_number;
+	std::getline(std::cin, phone_number);
 	if (phone_number == "")
 		return (error());
 	std::cout << "Introduce the darkest secret of your contact: \n";
-	std::cin >> darkest_secret;
+	std::getline(std::cin, darkest_secret);
 	if (darkest_secret == "")
 		return (error());
 
@@ -59,18 +59,20 @@ void	PhoneBook::printeito(std::string s)
 
 void	PhoneBook::search()
 {
-	int			index;
+	std::string			index;
+	int					i;
 
 	std::cout <<  "Which contact would you like to see? (from 1 to 8)\n";
-	std::cin >> index;
-	if (index < 1 || index > 8)
+	std::getline(std::cin, index);
+	i = std::stoi(index);
+	if (i < 1 || i > 8)
 	{
 		std::cout << "Please, valid index. From 1 to 8." << std::endl;
 		return ;
 	}
-	index--;
-	std::cout << std::setfill(' ') <<  std::setw(10) << index  + 1<< "|" ;
-	contacts[index].printeito();
+	i--;
+	std::cout << std::setfill(' ') <<  std::setw(10) << i  + 1<< "|" ;
+	contacts[i].printeito();
 	std::cout << std::endl;
 }
 
@@ -87,7 +89,8 @@ void	PhoneBook::diary()
 	std::string	command;
 
 	std::cout << "Please, insert one of the following commands:\n ADD: add a new contact\n SEARCH: seek an existing contact\n EXIT: finish program.\n";
-	std::cin >> command;
+	std::getline(std::cin, command);// >> command;
+	std::cout << command;
 	while (advise == 1)
 	{
 		if (command == "ADD")
@@ -99,6 +102,6 @@ void	PhoneBook::diary()
 		else
 			std::cout << "Please, valid command\n";
 		if (advise == 1)
-			std::cin >> command;
+			std::getline(std::cin, command);
 	}
 }
