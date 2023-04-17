@@ -3,7 +3,6 @@
 int	main(int arg, char **args)
 {
 	PhoneBook pb;
-	std::string tuker;
 
 	if (!arg || !args)
 		return (0);

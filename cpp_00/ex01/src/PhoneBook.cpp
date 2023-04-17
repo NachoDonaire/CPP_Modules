@@ -64,7 +64,11 @@ void	PhoneBook::search()
 
 	std::cout <<  "Which contact would you like to see? (from 1 to 8)\n";
 	std::getline(std::cin, index);
+
+	std::cout << "a";
 	i = std::stoi(index);
+	std::cout << "b";
+
 	if (i < 1 || i > 8)
 	{
 		std::cout << "Please, valid index. From 1 to 8." << std::endl;
@@ -89,8 +93,7 @@ void	PhoneBook::diary()
 	std::string	command;
 
 	std::cout << "Please, insert one of the following commands:\n ADD: add a new contact\n SEARCH: seek an existing contact\n EXIT: finish program.\n";
-	std::getline(std::cin, command);// >> command;
-	std::cout << command;
+	std::getline(std::cin, command);
 	while (advise == 1)
 	{
 		if (command == "ADD")

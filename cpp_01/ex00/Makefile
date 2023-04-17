@@ -1,6 +1,6 @@
-SRCS = tests.cpp Account.cpp
+SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 SRDIR = src/
-NAME = tests
+NAME = main
 DSRC = $(addprefix $(SRDIR), $(SRCS))
 ALLC = $(DSRC)
 OBJS = $(DSRC:.cpp=.o)
