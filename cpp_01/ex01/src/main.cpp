@@ -6,9 +6,9 @@ int	main(int arg, char **args)
 	if (!arg && !args)
 		return (0);
 
-	z = newZombie("renton");
-	z->announce();
-	randomChump("mark");
-	delete z;
+	z = zombieHorde(3, "galois");
+	for (int i = 0; i < 3; i++)
+		z->announce();
+	delete [] z;
 	return (0);
 }

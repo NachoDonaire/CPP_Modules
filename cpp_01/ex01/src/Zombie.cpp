@@ -1,8 +1,7 @@
 #include <Zombie.h>
 
-Zombie::Zombie(std::string namecillo)
+Zombie::Zombie()
 {
-	name = namecillo;
 }
 
 void	Zombie::announce()
@@ -13,4 +12,9 @@ void	Zombie::announce()
 Zombie::~Zombie()
 {
 	std::cout << "The zombie: " << name << " has been destroyed" << std::endl;
+}
+
+void	Zombie::setname(std::string namecillo)
+{
+	this->name = namecillo;
 }
