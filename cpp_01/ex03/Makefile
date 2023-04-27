@@ -1,19 +1,17 @@
-SRCS = main.cpp
+SRCS = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 SRDIR = src/
-NAME = main
+NAME = attack
 DSRC = $(addprefix $(SRDIR), $(SRCS))
 ALLC = $(DSRC)
 OBJS = $(DSRC:.cpp=.o)
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -Iinc
+CPPFLAGS = -Wall -Wextra -Werror -Iinc
 RM = rm -rf
 
 all: $(NAME)
 
-$(OBJS) : $(ALLC)
-	$(CC) $(CFLAGS) -c $< -o $@
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME) 
 
 clean:
 	$(RM) $(OBJS)
