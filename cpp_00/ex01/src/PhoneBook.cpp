@@ -61,13 +61,22 @@ void	PhoneBook::search()
 {
 	std::string			index;
 	int					i;
+	int					y;
 
 	std::cout <<  "Which contact would you like to see? (from 1 to 8)\n";
 	std::getline(std::cin, index);
 
-	std::cout << "a";
+	y = 0;
+	while (index[y])
+	{
+		if (isdigit(index[y]) == 0)
+		{
+			std::cout << "Please, a number" << std::endl;
+			return ;
+		}
+		y++;
+	}
 	i = std::stoi(index);
-	std::cout << "b";
 
 	if (i < 1 || i > 8)
 	{

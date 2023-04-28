@@ -4,19 +4,19 @@
 
 Weapon::Weapon(std::string type)
 {
-	setType(type)
+	setType(type);
 }
 
 Weapon::~Weapon()
 {
 }
 
-const std::string	&Weapon::getType();
+const std::string	Weapon::getType()
 {
 	return (this->type);
 }
 
-void	setType(std::string newType)
+void	Weapon::setType(std::string newType)
 {
 	this->type = newType;
 }
