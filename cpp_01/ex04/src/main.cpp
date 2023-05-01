@@ -2,27 +2,15 @@
 
 int	main(int arg, char **args)
 {
-	//std::string		line;
-
 	if (arg != 4)
 	{
 		std::cout << "Invalid parameters" << std::endl;
 		return (0);
 	}
 
-	std::ifstream	archivo(args[1]);
-	std::string 	buffer = bufferio(archivo);
-	/*if (file.is_open())
-	{
-		while (std::getline(file, line))
-		{
-			if (file.eof())
-				buffer += line;
-			else
-				buffer += line + "\n";
-		}
-		file.close();
-	}*/
-	std::cout << buffer << std::endl;
+	std::string 	buffer = bufferio(args[1]);
+	if (buffer == "")
+		return (0);
+	replace_file(buffer, args[1], args[2], args[3]);
 	return (0);
 }
