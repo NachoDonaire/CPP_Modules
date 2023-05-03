@@ -1,0 +1,39 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALLC	Makefile	/^ALLC = $(DSRC)$/;"	m
+CC	Makefile	/^CC = c++$/;"	m
+CPPFLAGS	Makefile	/^CPPFLAGS = -Wall -Wextra -Werror -Iinc$/;"	m
+DSRC	Makefile	/^DSRC = $(addprefix $(SRDIR), $(SRCS))$/;"	m
+EX_HPP	inc/ex.hpp	2;"	d
+HUMANA_HPP	inc/HumanA.hpp	2;"	d
+HUMANB_HPP	inc/HumanB.hpp	2;"	d
+HumanA	inc/HumanA.hpp	/^class HumanA$/;"	c
+HumanA	src/HumanA.cpp	/^HumanA::HumanA(std::string name, Weapon &we) : _name(name), w(we){$/;"	f	class:HumanA
+HumanB	inc/HumanB.hpp	/^class HumanB$/;"	c
+HumanB	src/HumanB.cpp	/^HumanB::HumanB(std::string name)$/;"	f	class:HumanB
+NAME	Makefile	/^NAME = attack$/;"	m
+OBJS	Makefile	/^OBJS = $(DSRC:.cpp=.o)$/;"	m
+RM	Makefile	/^RM = rm -rf$/;"	m
+SRCS	Makefile	/^SRCS = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp$/;"	m
+SRDIR	Makefile	/^SRDIR = src\/$/;"	m
+WEAPON_HPP	inc/Weapon.hpp	2;"	d
+Weapon	inc/Weapon.hpp	/^class	Weapon$/;"	c
+Weapon	src/Weapon.cpp	/^Weapon::Weapon(std::string type)$/;"	f	class:Weapon
+_name	inc/HumanA.hpp	/^		std::string	_name;$/;"	m	class:HumanA
+attack	src/HumanA.cpp	/^void	HumanA::attack()$/;"	f	class:HumanA
+attack	src/HumanB.cpp	/^void	HumanB::attack()$/;"	f	class:HumanB
+getType	src/Weapon.cpp	/^const std::string	&Weapon::getType()$/;"	f	class:Weapon
+main	src/main.cpp	/^int main()$/;"	f
+name	inc/HumanB.hpp	/^		std::string	name;$/;"	m	class:HumanB
+setType	src/Weapon.cpp	/^void	Weapon::setType(std::string newType)$/;"	f	class:Weapon
+setWeapon	src/HumanB.cpp	/^void	HumanB::setWeapon(Weapon &w)$/;"	f	class:HumanB
+type	inc/Weapon.hpp	/^		std::string type;$/;"	m	class:Weapon
+w	inc/HumanA.hpp	/^		Weapon 		&w;$/;"	m	class:HumanA
+w	inc/HumanB.hpp	/^		Weapon		*w;$/;"	m	class:HumanB
+~HumanA	src/HumanA.cpp	/^HumanA::~HumanA()$/;"	f	class:HumanA
+~HumanB	src/HumanB.cpp	/^HumanB::~HumanB()$/;"	f	class:HumanB
+~Weapon	src/Weapon.cpp	/^Weapon::~Weapon()$/;"	f	class:Weapon

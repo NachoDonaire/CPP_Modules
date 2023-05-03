@@ -28,7 +28,6 @@ Fixed& Fixed::operator=(const Fixed &f)
 int	Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits called" << std::endl;
-	std::cout << this->integer << std::endl;
 	return (this->integer);
 }
 
