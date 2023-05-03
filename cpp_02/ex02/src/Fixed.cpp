@@ -138,6 +138,36 @@ Fixed	Fixed::operator--(int)
 	return tmp;
 }
 
+/*max and min*/
+
+Fixed	&Fixed::max(Fixed& f1, Fixed& f2)
+{
+	if (f1.toFloat() < f2.toFloat())
+		return (f2);
+	return (f1);
+}
+
+const Fixed	&Fixed::max(const Fixed& f1, const Fixed& f2)
+{
+	if (f1.toFloat() < f2.toFloat())
+		return (f2);
+	return (f1);
+}
+
+Fixed	&Fixed::min(Fixed& f1, Fixed& f2)
+{
+	if (f1.toFloat() > f2.toFloat())
+		return (f2);
+	return (f1);
+}
+
+const Fixed	&Fixed::min(const Fixed& f1, const Fixed& f2)
+{
+	if (f1.toFloat() > f2.toFloat())
+		return (f2);
+	return (f1);
+}
+
 /*utils*/
 
 float	Fixed::toFloat(void)const

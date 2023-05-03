@@ -15,6 +15,8 @@ std::cout << c + b << std::endl;
 std::cout << c - b << std::endl;
 std::cout << c * b << std::endl;
 std::cout << c / b << std::endl;
+std::cout << c.max(c, d) << std::endl;
+std::cout << c.min(a, b) << std::endl;
 //std::cout << Fixed::max( a, b ) << std::endl;
 return 0;
 }
