@@ -1,4 +1,8 @@
+#ifndef	POINT_HPP
+#define POINT_HPP
+
 #include <Fixed.hpp>
+
 
 class	Point
 {
@@ -10,7 +14,13 @@ class	Point
 		Point();
 		~Point();
 		Point(const Point &p);
-		Point(const Fixed x_2, const Fixed y_2);
+		Point(const float x_2, const float y_2);
 		const Point	operator=(const Point &p);
-		//Fixed	distance(Point a, Point b);
+		const Fixed	distance(Point const a, Point const b) const;
+		float	dot(const Point a, const Point b);
+		float	cross(Point a, Point b);
+		bool	is_in_straight(const Point a, const Point b) const;
 };
+
+
+#endif

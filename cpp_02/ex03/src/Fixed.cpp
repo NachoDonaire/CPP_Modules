@@ -2,40 +2,34 @@
 
 Fixed::Fixed()
 {
-	std::cout << "Default constructor called" << std::endl;
 	this->integer = 0;
 }
 
 Fixed::Fixed(int const integercin)
 {
-	std::cout << "Int constructor called" << std::endl;
 	this->integer = integercin * pow(2, this->bits);
 }
 
 Fixed::Fixed(float const flotancin)
 {
-	std::cout << "Float constructor called" << std::endl;
 	//this->integer = static_cast<int>(flotancin) * pow(2, this->bits);
 	this->integer = static_cast<int>(roundf(flotancin * (1 << this->bits)));
 }
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed &f)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	this->integer = f.integer;
 }
 
-const Fixed Fixed::operator=(const Fixed &f) const
+Fixed Fixed::operator=(const Fixed &f)
 {
-	std::cout << "Assignation operator called" << std::endl;
 	if (this != &f)
 		this->integer = f.integer;
-	return (*this);
+	return (f);
 }
 
 std::ostream& operator<<(std::ostream &os, const Fixed &f)
@@ -48,7 +42,6 @@ std::ostream& operator<<(std::ostream &os, const Fixed &f)
 
 bool	Fixed::operator>(const Fixed& f)
 {
-	std::cout << "< operator called" << std::endl;
 	if (this->toFloat() > f.toFloat())
 		return true;
 	return false;
@@ -56,7 +49,6 @@ bool	Fixed::operator>(const Fixed& f)
 
 bool	Fixed::operator<(const Fixed& f)
 {
-	std::cout << "< operator called" << std::endl;
 	if (this->toFloat() < f.toFloat())
 		return true;
 	return false;
@@ -64,7 +56,6 @@ bool	Fixed::operator<(const Fixed& f)
 
 bool	Fixed::operator>=(const Fixed& f)
 {
-	std::cout << "< operator called" << std::endl;
 	if (this->toFloat() >= f.toFloat())
 		return true;
 	return false;
@@ -72,7 +63,6 @@ bool	Fixed::operator>=(const Fixed& f)
 
 bool	Fixed::operator<=(const Fixed& f)
 {
-	std::cout << "< operator called" << std::endl;
 	if (this->toFloat() <= f.toFloat())
 		return true;
 	return false;

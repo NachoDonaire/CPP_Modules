@@ -1,4 +1,4 @@
-SRCS = Fixed.cpp main.cpp Point.cpp
+SRCS = Fixed.cpp main.cpp Point.cpp bsp.cpp
 SRDIR = src/
 NAME = Fixed
 DSRC = $(addprefix $(SRDIR), $(SRCS))
