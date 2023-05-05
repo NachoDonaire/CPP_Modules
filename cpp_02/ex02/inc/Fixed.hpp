@@ -13,8 +13,7 @@ class	Fixed
 		Fixed(float const flotancin);
 		~Fixed();
 		Fixed(const Fixed &f);
-		const Fixed& operator=(const Fixed &f);
-		std::ostream& operator<<(std::ostream &os, const Fixed& f);
+		Fixed& operator=(const Fixed &f);
 		int		getRawBits(void) const;
 		void		setRawBits(int const raw);
 		float		toFloat(void) const;
@@ -37,3 +36,5 @@ class	Fixed
 		static Fixed		&max(Fixed &f1, Fixed &f2);
 		
 };
+
+std::ostream& operator<<(std::ostream &os, const Fixed& f);

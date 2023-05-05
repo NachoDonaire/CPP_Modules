@@ -2,6 +2,7 @@
 #define POINT_HPP
 
 #include <Fixed.hpp>
+#define EPSILON 0.001
 
 
 class	Point

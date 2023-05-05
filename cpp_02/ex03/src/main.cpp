@@ -12,11 +12,12 @@ int main( void ) {
 	Point a(1, 1);
 	Point b(2, 5);
 	Point c(3, 1);
-	Point point(2, 4);
+	Point point(3,11);
 
 	x1 = x2;
 	std::cout << x1 << std::endl;
 
+	std::cout << "area----: " << area_triangulo(a, b, c) << std::endl;
 	distance = c.is_in_straight(a, b);
 	if (bsp(a, b, c, point))
 		std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
