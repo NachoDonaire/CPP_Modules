@@ -1,4 +1,4 @@
-SRCS = Animal.cpp main.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
+SRCS = Animal.cpp main.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 SRDIR = src/
 NAME = Animal
 DSRC = $(addprefix $(SRDIR), $(SRCS))
