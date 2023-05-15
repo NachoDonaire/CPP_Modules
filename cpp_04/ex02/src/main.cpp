@@ -4,11 +4,11 @@
 #include <WrongAnimal.hpp>
 #include <WrongCat.hpp>
 
-
 int	main()
 {
-	const Animal* meta = new Animal();
+//const Animal* meta = new Animal();
 const Animal* j = new Dog();
+const Animal* k = new Dog();
 const Animal* i = new Cat();
 
 std::cout << "---------------------------------------------" << std::endl;
@@ -17,21 +17,17 @@ std::cout << j->getType() << " " << std::endl;
 std::cout << i->getType() << " " << std::endl;
 i->makeSound(); //will output the cat sound!
 j->makeSound();
-meta->makeSound();
+//meta->makeSound();
 
 std::cout << "---------------------------------------------" << std::endl;
 
-Dog proof;
-Dog tmp = proof;
-
-    const Animal* animals[4] = { new Dog(), new Dog(), new Cat(), new Cat() };
-    for ( int i = 0; i < 4; i++ ) {
-        delete animals[i];
-    }
+k = j;
+(void)k;
 
 std::cout << "---------------------------------------------" << std::endl;
+
 delete i;
 delete j;
-delete meta;
+//delete meta;
 return 0;
 }

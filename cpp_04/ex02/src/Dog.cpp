@@ -36,3 +36,8 @@ void Dog::makeSound() const
 {
 	std::cout << "Hhhhhuau" << std::endl;
 }
+
+void Dog::Pure_Method()
+{
+	std::cout << "Dog pure method called" << std::endl;
+}
