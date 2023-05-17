@@ -1,6 +1,8 @@
-SRCS = main.cpp
+SRCS = main.cpp AMateria.cpp Character.cpp \
+       Cure.cpp Ice.cpp ICharacter.cpp \
+       IMateriaSource.cpp MateriaSource.cpp
 SRDIR = src/
-NAME = main
+NAME = materia
 DSRC = $(addprefix $(SRDIR), $(SRCS))
 ALLC = $(DSRC)
 OBJS = $(DSRC:.cpp=.o)

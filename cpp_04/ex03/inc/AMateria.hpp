@@ -2,6 +2,9 @@
 #define AMATERIA_HPP
 
 #include <iostream>
+#include <ICharacter.hpp>
+
+class ICharacter;
 
 class AMateria
 {
@@ -9,9 +12,9 @@ class AMateria
 		std::string	type;
 
  	public:
-    		AMateria();
+		AMateria();
     		AMateria(const AMateria &f);
-    		~AMateria();
+    		virtual ~AMateria();
     		AMateria& operator=(const AMateria &f);
 		std::string const & getType() const;
 		virtual AMateria* clone() const = 0;

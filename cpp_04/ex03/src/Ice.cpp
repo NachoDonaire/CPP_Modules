@@ -3,10 +3,10 @@
 Ice::Ice()
 {
         std::cout << "Ice constructor called" << std::endl;
-        this->type = "";
+        this->type = "ice";
 }
 
-Ice::Ice(const Ice &a)
+Ice::Ice(const Ice &a) : AMateria(a)
 {
         this->type = a.type;
 }
@@ -25,18 +25,13 @@ Ice &Ice::operator=(const Ice &f)
         return *this;
 }
 
-std::string const &Ice::getType()
+AMateria	*Ice::clone() const
 {
-	return this->type;
-}
-
-AMateria	*Ice::clone()
-{
-	AMateria a = new *Ice;
+	AMateria *a = new Ice(*this);
 	return a;
 }
 
 void	Ice::use(ICharacter &target)
 {
-	std::cout << "* shoots an ice bolt at " << target.name << " *" << std::endl;
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }
