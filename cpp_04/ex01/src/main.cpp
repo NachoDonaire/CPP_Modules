@@ -20,9 +20,17 @@ j->makeSound();
 meta->makeSound();
 
 std::cout << "---------------------------------------------" << std::endl;
+std::cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << std::endl;
 
 Dog proof;
 Dog tmp = proof;
+const Animal *pruebote = new Cat();
+const Animal *tucker = pruebote;
+ pruebote->makeSound();
+proof.makeSound();
+tucker->makeSound();
+
+std::cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << std::endl;
 
     const Animal* animals[4] = { new Dog(), new Dog(), new Cat(), new Cat() };
     for ( int i = 0; i < 4; i++ ) {

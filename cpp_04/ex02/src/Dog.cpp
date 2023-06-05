@@ -7,37 +7,29 @@ Dog::Dog() : Animal()
 	this->b = new Brain;
 }
 
-Dog::Dog(const Dog &a) : Animal()
+Dog::Dog(const Dog &a) : Animal(), b(new Brain(*a.b))
 {
-	*this = a;
+	std::cout << "dog copy constructor called" << std::endl;
+        this->type = a.type;
 }
 
 Dog::~Dog()
 {
         std::cout << "Dog destructor called" << std::endl;
-	delete this->b;
 }
 
 Dog &Dog::operator=(const Dog &f)
 {
-	std::cout << "Dog operator called" << std::endl;
-        if (this == &f)
+        if (this != &f)
         {
-		return *this;
+		delete this->b;
+		this->b = new Brain(*f.b);
+                this->type = f.type;
         }
-	delete this->b;
-	b = new Brain(*f.b);
-	this->type = f.type;
-	return *this;
-
+        return *this;
 }
 
 void Dog::makeSound() const
 {
 	std::cout << "Hhhhhuau" << std::endl;
-}
-
-void Dog::Pure_Method()
-{
-	std::cout << "Dog pure method called" << std::endl;
 }

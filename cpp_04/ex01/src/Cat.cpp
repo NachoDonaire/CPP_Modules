@@ -9,26 +9,23 @@ Cat::Cat() : Animal()
 
 Cat::Cat(const Cat &a) : Animal()
 {
-	*this = a;
+        this->type = a.type;
 }
 
 Cat::~Cat()
 {
         std::cout << "Cat destructor called" << std::endl;
-	delete this->b;
 }
 
 Cat &Cat::operator=(const Cat &f)
 {
-	std::cout << "Cat operator called" << std::endl;
-        if (this == &f)
+        if (this != &f)
         {
-		return *this;
+		delete this->b;
+		b = new Brain(*f.b);
+                this->type = f.type;
         }
-	delete this->b;
-	b = new Brain(*f.b);
-	this->type = f.type;
-	return *this;
+        return *this;
 }
 
 void Cat::makeSound() const
