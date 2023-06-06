@@ -32,8 +32,7 @@ std::string const &Cure::getType() const
 */
 AMateria	*Cure::clone() const
 {
-	AMateria* a = new Cure(*this);
-	return a;
+	return new Cure(*this);
 }
 
 void	Cure::use(ICharacter &target)
