@@ -2,12 +2,12 @@
 #include "Character.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
-
+/*
 void	leaks()
 {
 	system("leaks  materia");
 }
-
+*/
 int	main()
 {
 	AMateria	*i = new Ice();	
@@ -19,7 +19,6 @@ int	main()
 Character* me = new Character("me");
 AMateria* tmp;
 tmp = src->createMateria("ice");
-delete tmp;
 std::cout << "alakazam" << std::endl;
 me->equip(tmp);
 delete tmp;
@@ -36,6 +35,8 @@ std::cout << "------------------" << std::endl;
 delete bob;
 delete me;
 delete src;
+delete	i;
+delete	c;
 
 	return (0);
 }

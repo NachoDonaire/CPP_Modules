@@ -24,7 +24,6 @@ MateriaSource::~MateriaSource()
 		if (this->materias[i])
 			delete materias[i];
 	}
-		delete this->materias[i];
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &f)
