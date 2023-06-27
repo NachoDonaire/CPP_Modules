@@ -5,13 +5,16 @@
 
 int	main()
 {
+	AMateria	*i = new Ice();	
+	AMateria	*c = new Cure();	
 	IMateriaSource* src = new MateriaSource();
-	src->learnMateria(new Ice());
-	src->learnMateria(new Cure());
+	src->learnMateria(i);
+	src->learnMateria(c);
 
 Character* me = new Character("me");
 AMateria* tmp;
 tmp = src->createMateria("ice");
+delete tmp;
 std::cout << "alakazam" << std::endl;
 me->equip(tmp);
 std::cout << "alakazam" << std::endl;

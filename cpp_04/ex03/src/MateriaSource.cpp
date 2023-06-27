@@ -19,6 +19,11 @@ MateriaSource::MateriaSource(const MateriaSource &a) : IMateriaSource(a)
 
 MateriaSource::~MateriaSource()
 {
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->materias[i])
+			delete materias[i];
+	}
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &f)
