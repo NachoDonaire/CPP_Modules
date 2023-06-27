@@ -21,6 +21,7 @@ Character::Character(Character const &other) : ICharacter(other)
 
 Character::~Character()
 {
+	std::cout << "character destructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		delete materias[i];
 }
@@ -65,6 +66,7 @@ void	Character::equip(AMateria *m)
 		return ;
 	}
 	std::cout<< "jimmy" << std::endl;
+	delete materias[i];
 	materias[i] = m->clone();
 	std::cout <<"jazz" << std::endl;
 }

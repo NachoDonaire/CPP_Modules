@@ -32,3 +32,8 @@ void Cat::makeSound() const
 {
 	std::cout << "Meeeaow" << std::endl;
 }
+
+void	Cat::Pure_Method()
+{
+	std::cout << "metodo puro de gato" << std::endl;
+}

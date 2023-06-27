@@ -11,7 +11,7 @@ MateriaSource::MateriaSource(const MateriaSource &a) : IMateriaSource(a)
 	for (int i = 0; i < 4; i++)
 	{
 		if (a.materias[i])
-			this->materias[i] = a.materias[i];
+			this->materias[i] = a.materias[i]->clone();
 		else
 			this->materias[i] = NULL;
 	}
@@ -24,6 +24,7 @@ MateriaSource::~MateriaSource()
 		if (this->materias[i])
 			delete materias[i];
 	}
+		delete this->materias[i];
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &f)
