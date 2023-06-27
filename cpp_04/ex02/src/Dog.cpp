@@ -15,6 +15,7 @@ Dog::Dog(const Dog &a) : Animal(), b(new Brain(*a.b))
 
 Dog::~Dog()
 {
+	delete this->b;
         std::cout << "Dog destructor called" << std::endl;
 }
 

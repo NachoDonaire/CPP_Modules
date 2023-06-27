@@ -16,6 +16,7 @@ Dog::Dog(const Dog &a) : Animal(), b(new Brain(*a.b))
 Dog::~Dog()
 {
         std::cout << "Dog destructor called" << std::endl;
+		delete this->b;
 }
 
 Dog &Dog::operator=(const Dog &f)

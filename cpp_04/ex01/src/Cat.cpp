@@ -14,6 +14,7 @@ Cat::Cat(const Cat &a) : Animal()
 
 Cat::~Cat()
 {
+	delete this->b;
         std::cout << "Cat destructor called" << std::endl;
 }
 

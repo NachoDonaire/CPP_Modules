@@ -4,12 +4,18 @@
 #include <WrongAnimal.hpp>
 #include <WrongCat.hpp>
 
+void	leaks()
+{
+	system("leaks Animal");
+}
 
 int	main()
 {
 	const Animal* meta = new Animal();
 const Animal* j = new Dog();
 const Animal* i = new Cat();
+
+//atexit(leaks);
 
 std::cout << "---------------------------------------------" << std::endl;
 
@@ -41,5 +47,7 @@ std::cout << "---------------------------------------------" << std::endl;
 delete i;
 delete j;
 delete meta;
+delete	pruebote;
+//delete	tucker;
 return 0;
 }
