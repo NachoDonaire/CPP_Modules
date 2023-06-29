@@ -1,6 +1,6 @@
-SRCS = Bureaucrat.cpp main.cpp
+SRCS = Bureaucrat.cpp main.cpp Form.cpp
 SRDIR = src/
-NAME = Bureaucrat
+NAME = Form
 DSRC = $(addprefix $(SRDIR), $(SRCS))
 ALLC = $(DSRC)
 OBJS = $(DSRC:.cpp=.o)
