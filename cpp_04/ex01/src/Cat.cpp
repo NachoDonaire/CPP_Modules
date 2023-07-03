@@ -7,7 +7,7 @@ Cat::Cat() : Animal()
 	this->b = new Brain;
 }
 
-Cat::Cat(const Cat &a) : Animal()
+Cat::Cat(const Cat &a) : Animal(), b(new Brain(*a.b))
 {
         this->type = a.type;
 }
