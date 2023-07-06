@@ -19,6 +19,7 @@ const Animal* i = new Cat();
 
 std::cout << "---------------------------------------------" << std::endl;
 
+//atexit(leaks);
 std::cout << j->getType() << " " << std::endl;
 std::cout << i->getType() << " " << std::endl;
 i->makeSound(); //will output the cat sound!
@@ -29,7 +30,8 @@ std::cout << "---------------------------------------------" << std::endl;
 std::cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << std::endl;
 
 Dog proof;
-Dog tmp = proof;
+Dog tmp(proof);
+proof.compareBrain(tmp);
 const Animal *pruebote = new Cat();
 const Animal *tucker = pruebote;
  pruebote->makeSound();

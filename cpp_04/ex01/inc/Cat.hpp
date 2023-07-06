@@ -14,6 +14,8 @@ class Cat : public Animal
     		~Cat();
     		Cat& operator=(const Cat &f);
 		void makeSound() const;
+		void	compareBrain(const Cat &a);
+		Brain	*getBrain() const;
 };
 
 #endif

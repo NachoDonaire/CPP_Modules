@@ -6,6 +6,9 @@ ShrubberyCreationForm::ShrubberyCreationForm()
         this->type = "";
 }
 
+ShrubberyCreationForm::ShrubberyCreationForm(std::string t) : target(t)
+{}
+
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &a)
 {
         this->type = a.type;
@@ -23,4 +26,8 @@ ShrubberyCreationForm ShrubberyCreationForm::operator=(const ShrubberyCreationFo
                 this->type = f.type;
         }
         return *this;
+}
+
+void	execute(Bureaucrat  const & executor) const
+{
 }

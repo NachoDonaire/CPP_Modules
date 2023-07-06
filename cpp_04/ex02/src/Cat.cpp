@@ -34,7 +34,13 @@ void Cat::makeSound() const
 	std::cout << "Meeeaow" << std::endl;
 }
 
-void	Cat::Pure_Method()
+void	Cat::compareBrain(const Cat &a)
 {
-	std::cout << "metodo puro de gato" << std::endl;
+	std::cout << "Address 1: " << &this->b;
+	std::cout << "Address 2: " << a.getBrain();
+}
+
+Brain	*Cat::getBrain() const
+{
+	return this->b;
 }

@@ -1,4 +1,4 @@
-SRCS = Bureaucrat.cpp main.cpp AForm.cpp
+SRCS = Bureaucrat.cpp main.cpp AForm.cpp RobotomyRequestForm.cpp
 SRDIR = src/
 NAME = Form
 DSRC = $(addprefix $(SRDIR), $(SRCS))

@@ -1,14 +1,12 @@
 #include <RobotomyRequestForm.hpp>
 
-RobotomyRequestForm::RobotomyRequestForm()
+RobotomyRequestForm::RobotomyRequestForm() : AForm()
 {
         std::cout << "RobotomyRequestForm constructor called" << std::endl;
-        this->type = "";
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &a)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &a) : AForm(a.getName(), a.getSign(), a.getGradeSign(), a.getGradeExec())
 {
-        this->type = a.type;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
@@ -16,11 +14,23 @@ RobotomyRequestForm::~RobotomyRequestForm()
         std::cout << "RobotomyRequestForm destructor called" << std::endl;
 }
 
-RobotomyRequestForm RobotomyRequestForm::operator=(const RobotomyRequestForm &f)
+RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &f)
 {
         if (this != &f)
         {
-                this->type = f.type;
+			return *this;
         }
         return *this;
+}
+
+void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
+{
+	if (this->getSign() == 0)
+		this->NotSignException();
+	std::cout << executor.getName() << std::endl;
+}
+
+void	RobotomyRequestForm::PureMethod()
+{
+	std::cout << "Pure method done" << std::endl;
 }

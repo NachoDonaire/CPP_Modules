@@ -15,8 +15,8 @@ Dog::Dog(const Dog &a) : Animal(), b(new Brain(*a.b))
 
 Dog::~Dog()
 {
-	delete this->b;
         std::cout << "Dog destructor called" << std::endl;
+		delete this->b;
 }
 
 Dog &Dog::operator=(const Dog &f)
@@ -35,7 +35,13 @@ void Dog::makeSound() const
 	std::cout << "Hhhhhuau" << std::endl;
 }
 
-void	Dog::Pure_Method()
+void	Dog::compareBrain(const Dog &a)
 {
-	std::cout << "pure dog method" << std::endl;
+	std::cout << "Address 1: " << &this->b << std::endl;
+	std::cout << "Address 2: " << a.getBrain() << std::endl;
+}
+
+Brain	*Dog::getBrain() const
+{
+	return this->b;
 }

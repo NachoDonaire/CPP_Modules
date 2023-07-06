@@ -9,12 +9,13 @@ class Cat : public Animal
 	private: 
 		Brain *b;
  	public:
-		void Pure_Method();
     		Cat();
     		Cat(const Cat &f);
     		~Cat();
     		Cat& operator=(const Cat &f);
 		void makeSound() const;
+		void	compareBrain(const Cat &a);
+		Brain	*getBrain() const;
 };
 
 #endif

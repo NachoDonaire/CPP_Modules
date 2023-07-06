@@ -9,12 +9,13 @@ class Dog : public Animal
 	private:
 		Brain 	*b;
  	public:
-		void Pure_Method();
     		Dog();
     		Dog(const Dog &f);
     		~Dog();
     		Dog& operator=(const Dog &f);
 		void makeSound() const;
+		void	compareBrain(const Dog &a);
+		Brain	*getBrain() const;
 };
 
 #endif

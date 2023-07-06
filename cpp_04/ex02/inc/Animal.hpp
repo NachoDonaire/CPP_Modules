@@ -8,12 +8,11 @@ class Animal
 	protected:
 		std::string type;
  	public:
-		virtual void Pure_Method() = 0;
     		Animal();
 		Animal(const Animal &a);
     		virtual ~Animal();
     		Animal& operator=(const Animal &f);
-		virtual void 		makeSound() const;
+		virtual void 		makeSound() const = 0;
 		std::string 	getType() const;
 };
 

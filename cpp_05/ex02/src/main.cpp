@@ -1,5 +1,6 @@
 #include <Bureaucrat.hpp>
 #include <AForm.hpp>
+#include <RobotomyRequestForm.hpp>
 
 int	main()
 {
@@ -7,10 +8,9 @@ int	main()
 	{
 		Bureaucrat b("Jossie", 12);
 		Bureaucrat a("Wilkinson", 15);
+		RobotomyRequestForm z;
+		z.execute(a);
 		Bureaucrat c(a);
-		AForm d("Platano", 1, 13, 14);
-		AForm e(d);
-		std::cout << d << std::endl << e << std::endl;
 		std::cout << c << std::endl;
 		b.upGrade(3);
 		std::cout << b << std::endl;

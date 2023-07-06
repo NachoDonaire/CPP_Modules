@@ -34,3 +34,14 @@ void Dog::makeSound() const
 {
 	std::cout << "Hhhhhuau" << std::endl;
 }
+
+void	Dog::compareBrain(const Dog &a)
+{
+	std::cout << "Address 1: " << &this->b << std::endl;
+	std::cout << "Address 2: " << a.getBrain() << std::endl;
+}
+
+Brain	*Dog::getBrain() const
+{
+	return this->b;
+}

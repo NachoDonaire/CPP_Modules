@@ -33,3 +33,14 @@ void Cat::makeSound() const
 {
 	std::cout << "Meeeaow" << std::endl;
 }
+
+void	Cat::compareBrain(const Cat &a)
+{
+	std::cout << "Address 1: " << &this->b;
+	std::cout << "Address 2: " << a.getBrain();
+}
+
+Brain	*Cat::getBrain() const
+{
+	return this->b;
+}
