@@ -1,4 +1,5 @@
 #include <Form.hpp>
+#include <Bureaucrat.hpp>
 
 Form::Form() :  name(""), sign(0), g_sgn(150), g_ex(150)
 {
@@ -68,4 +69,12 @@ std::ostream& operator<<(std::ostream &os, const Form &t)
 		s = "hasn t signed";
 	os << t.getName() << " form with " << t.getGradeSign() << " of grade of sign and " << t.getGradeExec() << " grade of exec " << s;
 	return os;
+}
+
+void	Form::beSigned(Bureaucrat &b)
+{
+	if (b.getGrade() <= this->getGradeSign())
+		this->sign = 1;
+	else
+		this->GradeTooLowException();
 }

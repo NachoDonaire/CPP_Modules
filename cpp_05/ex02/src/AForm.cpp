@@ -1,6 +1,7 @@
 #include <AForm.hpp>
+#include <Bureaucrat.hpp>
 
-AForm::AForm() :  name(""), sign(1), g_sgn(150), g_ex(150)
+AForm::AForm() :  name(""), sign(0), g_sgn(150), g_ex(150)
 {
         std::cout << "AForm constructor called" << std::endl;
 }
@@ -38,11 +39,6 @@ void	AForm::GradeTooHighException()
 	throw "AForm grade too high";
 }
 
-void	AForm::NotSignException() const
-{
-	throw "Not signed";
-}
-
 std::string AForm::getName() const
 {
 	return this->name;
@@ -75,7 +71,10 @@ std::ostream& operator<<(std::ostream &os, const AForm &t)
 	return os;
 }
 
-void	AForm::execute(Bureaucrat const & executor) const
+void	AForm::beSigned(Bureaucrat &b)
 {
-	(void)executor;
+	if (b.getGrade() <= this->getGradeSign())
+		this->sign = 1;
+	else
+		this->GradeTooLowException();
 }

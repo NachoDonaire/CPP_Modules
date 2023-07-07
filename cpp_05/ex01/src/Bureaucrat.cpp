@@ -72,3 +72,14 @@ void	Bureaucrat::downGrade(int d)
 		this->GradeTooHighException();
 	this->grade = t;
 }
+
+void	Bureaucrat::signForm(Form &f)
+{
+	if (f.getSign() == 1)
+		std::cout << this->getName() << " couldn´t sign " << f.getName() << " because " << "is already signed" << std::endl;
+	else
+	{
+		f.beSigned(*this);
+		std::cout << this->getName() << " signed " << f.getName() << std::endl;
+	}
+}
