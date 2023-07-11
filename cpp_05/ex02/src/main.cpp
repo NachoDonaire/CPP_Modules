@@ -1,25 +1,20 @@
 #include <Bureaucrat.hpp>
-#include <Form.hpp>
+#include <RobotomyRequestForm.hpp>
+#include <ShrubberyCreationForm.hpp>
+#include <AForm.hpp>
 
 int	main()
 {
 	try
 	{
-		Bureaucrat b("Jossie", 12);
+		//Bureaucrat b("Jossie", 12);
 		Bureaucrat a("Wilkinson", 10);
 		Bureaucrat c(a);
-		Form d("Platano", 0, 13, 14);
-		Form e(d);
-		std::cout << e.getSign() << std::endl;
-		a.signForm(e);
-		std::cout << e.getSign() << std::endl;
-		std::cout << d << std::endl << e << std::endl;
-		std::cout << c << std::endl;
-		b.upGrade(3);
-		std::cout << b << std::endl;
-		b.downGrade(3);
-		std::cout << b << std::endl;
-		std::cout << c << std::endl;
+		AForm *d = new RobotomyRequestForm("tobias  johnson");
+		AForm *e = new ShrubberyCreationForm("tobias  johnson");
+		a.executeAForm(*e);
+		a.executeAForm(*d);
+		delete e;
 	}
 	catch (const char *s)
 	{

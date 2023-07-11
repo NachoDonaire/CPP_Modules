@@ -1,4 +1,5 @@
 #include <Bureaucrat.hpp>
+#include <RobotomyRequestForm.hpp>
 
 Bureaucrat::Bureaucrat()
 {
@@ -73,7 +74,7 @@ void	Bureaucrat::downGrade(int d)
 	this->grade = t;
 }
 
-void	Bureaucrat::signForm(Form &f)
+void	Bureaucrat::signAForm(AForm &f)
 {
 	if (f.getSign() == 1)
 		std::cout << this->getName() << " couldn´t sign " << f.getName() << " because " << "is already signed" << std::endl;
@@ -84,10 +85,14 @@ void	Bureaucrat::signForm(Form &f)
 	}
 }
 
-void	executeForm(Form const &form)
+void	Bureaucrat::executeAForm(AForm const &form) const
 {
 	try
+	{
 		form.execute(*this);
-	catch (std::string c)
+		std::cout << *this << " executed " << form << std::endl;
+	}
+	catch (std::string c){
 		std::cout << c;
+	}
 }
