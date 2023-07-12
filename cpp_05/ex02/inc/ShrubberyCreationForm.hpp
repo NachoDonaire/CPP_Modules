@@ -5,14 +5,6 @@
 #include <Bureaucrat.hpp>
 #include <fstream>
 
-struct	Node{
-	int		value;
-	Node	*left;
-	Node	*right;
-
-	Node(int v) : value(v), left(NULL), right(NULL){}
-} ;
-
 class ShrubberyCreationForm : public AForm
 {
 	private:
@@ -24,7 +16,6 @@ class ShrubberyCreationForm : public AForm
     		~ShrubberyCreationForm();
     		ShrubberyCreationForm& operator=(const ShrubberyCreationForm &f);
 			void	execute(Bureaucrat const &executor) const;
-			void	tree(Node *n, int level, char c)  const;
 };
 
 #endif

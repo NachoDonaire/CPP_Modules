@@ -34,28 +34,15 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
         return *this;
 }
 
-void	ShrubberyCreationForm::tree(Node  *n, int level, char c) const
-{
-	std::ofstream	file(this->target + "_shrubberry", std::ofstream::out |  std::ofstream::trunc);
-	if (file.is_open())
-	{
-	if (n == NULL)
-		return ;
-	this->tree(n->right, level  + 1, '/');
-	for (int i = 0; i < level; i++)
-		file <<  "   ";
-	file << c << std::endl;
-	this->tree(n->left, level  + 1, '\\');
-	}
-	else
-		throw "File couldnt be open";
-}
-
-
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	if (executor.getGrade() > 137)
 		this->GradeTooLowException();
-	Node n(1);
-	this->tree(&n, 7, '_');
+	std::ofstream file(this->target + "_shrubbery", std::ofstream::out | std::ofstream::trunc);
+	if (file.is_open())
+	{
+		file << "Sebastián el tucker" << std::endl;
+	}
+	else
+		throw "File couldnt be opened";
 }
