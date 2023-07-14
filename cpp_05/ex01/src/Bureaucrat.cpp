@@ -8,9 +8,9 @@ Bureaucrat::Bureaucrat()
 Bureaucrat::Bureaucrat(std::string n, int g) : name(n)
 {
 	if (g > 150)
-		this->GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (g < 1)
-		this->GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	this->grade = g;
 }
 
@@ -29,16 +29,6 @@ std::ostream& operator<<(std::ostream &os, const Bureaucrat &b)
 	return os;
 }
 
-void	Bureaucrat::GradeTooLowException()
-{
-	throw "Grade too low";
-}
-
-void	Bureaucrat::GradeTooHighException()
-{
-	throw "Grade too high";
-}
-
 std::string	Bureaucrat::getName() const
 {
 	return this->name;
@@ -55,9 +45,9 @@ void	Bureaucrat::upGrade(int d)
 
 	t = this->grade - d;
 	if (t > 150)
-		this->GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (t < 1)
-		this->GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	this->grade = t;
 }
 
@@ -67,9 +57,9 @@ void	Bureaucrat::downGrade(int d)
 
 	t = this->grade + d;
 	if (t > 150)
-		this->GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (t < 1)
-		this->GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	this->grade = t;
 }
 

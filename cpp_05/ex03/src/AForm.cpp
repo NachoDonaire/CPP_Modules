@@ -9,14 +9,14 @@ AForm::AForm() :  name(""), sign(1), g_sgn(150), g_ex(150)
 AForm::AForm(std::string n, bool sign, int g_sign, int ex) :  name(n), sign(sign), g_sgn(g_sign), g_ex(ex)
 {
 	if (g_sign > 150)
-		this->GradeTooLowException();
+		AForm::GradeTooLowException();
 	else if (g_sign < 1)
-		this->GradeTooHighException();
+		AForm::GradeTooHighException();
 	//this->g_sgn = g_sign;
 	if (ex > 150)
-		this->GradeTooLowException();
+		AForm::GradeTooLowException();
 	else if (ex < 1)
-		this->GradeTooHighException();
+		AForm::GradeTooHighException();
 	//this->g_ex = ex;
 }
 
@@ -27,16 +27,6 @@ AForm::AForm(const AForm &a) : name(a.name), sign(a.sign), g_sgn(a.g_sgn), g_ex(
 AForm::~AForm()
 {
         std::cout << "AForm destructor called" << std::endl;
-}
-
-void	AForm::GradeTooLowException() const
-{
-	throw "AForm grade too low";
-}
-
-void	AForm::GradeTooHighException() const
-{
-	throw "AForm grade too high";
 }
 
 std::string AForm::getName() const
@@ -81,5 +71,5 @@ void	AForm::beSigned(Bureaucrat &b)
 	if (b.getGrade() <= this->getGradeSign())
 		this->signIn();
 	else
-		this->GradeTooLowException();
+		AForm::GradeTooLowException();
 }

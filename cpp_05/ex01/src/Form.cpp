@@ -9,14 +9,14 @@ Form::Form() :  name(""), sign(0), g_sgn(150), g_ex(150)
 Form::Form(std::string n, bool sign, int g_sign, int ex) :  name(n), sign(sign), g_sgn(g_sign), g_ex(ex)
 {
 	if (g_sign > 150)
-		this->GradeTooLowException();
+		Form::GradeTooLowException();
 	else if (g_sign < 1)
-		this->GradeTooHighException();
+		Form::GradeTooHighException();
 	//this->g_sgn = g_sign;
 	if (ex > 150)
-		this->GradeTooLowException();
+		Form::GradeTooLowException();
 	else if (ex < 1)
-		this->GradeTooHighException();
+		Form::GradeTooHighException();
 	//this->g_ex = ex;
 }
 
@@ -27,16 +27,6 @@ Form::Form(const Form &a) : name(a.name), sign(a.sign), g_sgn(a.g_sgn), g_ex(a.g
 Form::~Form()
 {
         std::cout << "Form destructor called" << std::endl;
-}
-
-void	Form::GradeTooLowException()
-{
-	throw "Form grade too low";
-}
-
-void	Form::GradeTooHighException()
-{
-	throw "Form grade too high";
 }
 
 std::string Form::getName() const
@@ -76,5 +66,5 @@ void	Form::beSigned(Bureaucrat &b)
 	if (b.getGrade() <= this->getGradeSign())
 		this->sign = 1;
 	else
-		this->GradeTooLowException();
+		Form::GradeTooLowException();
 }

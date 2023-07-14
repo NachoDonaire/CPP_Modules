@@ -36,15 +36,13 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	if (this->getSign() == 0)
-		throw AForm::NotSignedException();
 	if (executor.getGrade() > 137)
-		throw AForm::GradeTooLowException();
+		AForm::GradeTooLowException();
 	std::ofstream file(this->target + "_shrubbery", std::ofstream::out | std::ofstream::trunc);
 	if (file.is_open())
 	{
 		file << "Sebastián el tucker" << std::endl;
 	}
 	else
-		throw AForm::FileNotOpen();
+		throw "File couldnt be opened";
 }

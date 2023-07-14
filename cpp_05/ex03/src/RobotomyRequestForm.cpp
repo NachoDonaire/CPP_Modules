@@ -44,9 +44,9 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 	int	tucson = dis(gen);
 
 	if (this->getSign() == 0)
-		throw AForm::NotSignedException();
+		throw "Not  signed";
 	if (executor.getGrade() > 45)
-		throw AForm::GradeTooLowException();
+		AForm::GradeTooLowException();
 	else
 	{
 		std::cout << tucson << std::endl;

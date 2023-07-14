@@ -4,7 +4,7 @@ int	main()
 {
 	try
 	{
-		Bureaucrat b("Jossie", 12);
+		Bureaucrat b("Jossie", -1);
 		Bureaucrat a("Wilkinson", 15);
 		Bureaucrat c(a);
 		std::cout << c << std::endl;
@@ -14,9 +14,9 @@ int	main()
 		std::cout << b << std::endl;
 		std::cout << c << std::endl;
 	}
-	catch (const char *s)
+	catch (std::exception &c)
 	{
-		std::cout << s;
+		std::cout << c.what();
 	}
 	return (0);
 }
