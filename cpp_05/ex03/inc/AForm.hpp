@@ -24,6 +24,15 @@ class AForm
 				public:
 					virtual const char * what() const throw() { return "Grade too low"; };
 			};
+			class	NotSignedException : public std::exception{
+				public:
+					virtual const char * what() const throw() { return "Not signed"; };
+			};
+			class FileNotOpen: public std::exception{
+				public:
+					virtual const char * what() const throw() { return "File couldnt be open"; };
+			};
+
 		std::string	getName() const;
 		bool		getSign() const;
 		int		getGradeSign() const;

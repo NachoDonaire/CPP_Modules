@@ -1,7 +1,7 @@
 #include <AForm.hpp>
 #include <Bureaucrat.hpp>
 
-AForm::AForm() :  name(""), sign(1), g_sgn(150), g_ex(150)
+AForm::AForm() :  name(""), sign(0), g_sgn(150), g_ex(150)
 {
         std::cout << "AForm constructor called" << std::endl;
 }
