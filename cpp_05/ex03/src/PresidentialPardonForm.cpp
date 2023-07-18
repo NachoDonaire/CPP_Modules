@@ -7,12 +7,9 @@ PresidentialPardonForm::PresidentialPardonForm() : AForm()
         this->target = "Default target";
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string t) : AForm()
+PresidentialPardonForm::PresidentialPardonForm(std::string t) : AForm(t, 0, 25, 5)
 {
-	std::cout << "Robotomy parameter constructor called" << std::endl;
-	std::cout << t << std::endl;
 	this->target = t;
-	std::cout  <<  target << std::endl;
 }
 
 
@@ -37,7 +34,9 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 
 void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-	if (executor.getGrade() > 5)
-		AForm::GradeTooLowException();
+	if (this->getSign() == 0)
+		throw AForm::NotSignedException();
+	if (executor.getGrade() > this->getGradeExec())
+		throw AForm::GradeTooLowException();
 	std::cout << this->target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

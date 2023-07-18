@@ -5,13 +5,13 @@ int	main()
 {
 	try
 	{
-		Bureaucrat b("Jossie", 12);
+		Bureaucrat b("Jossie", 15);
 		Bureaucrat a("Wilkinson", 10);
 		Bureaucrat c(a);
 		Form d("Platano", 0, 13, 14);
 		Form e(d);
 		std::cout << e.getSign() << std::endl;
-		a.signForm(e);
+		b.signForm(e);
 		std::cout << e.getSign() << std::endl;
 		std::cout << d << std::endl << e << std::endl;
 		std::cout << c << std::endl;
@@ -21,9 +21,9 @@ int	main()
 		std::cout << b << std::endl;
 		std::cout << c << std::endl;
 	}
-	catch (const char *s)
+	catch (std::exception &e)
 	{
-		std::cout << s;
+		std::cout << e.what();
 	}
 	return (0);
 }

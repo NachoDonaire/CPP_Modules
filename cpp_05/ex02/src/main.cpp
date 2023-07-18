@@ -7,9 +7,9 @@
 int	main()
 {
 	 try {
-        Bureaucrat bureaucrat("ash", 135); // error with 200
+        Bureaucrat bureaucrat("ashi", 6); // error with 200
         ShrubberyCreationForm form1("Shrubbery");
-        RobotomyRequestForm form2("Robotomy");
+        RobotomyRequestForm form2("RobotomyRequestForm");
         PresidentialPardonForm form3("President");
 
         std::cout << "\n--------------- Form 1 ( Shrubbery ) ---------------" << std::endl;

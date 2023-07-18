@@ -2,17 +2,16 @@
 #include  <random>
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm()
+
 {
         std::cout << "RobotomyRequestForm constructor called" << std::endl;
         this->target = "Default target";
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string t) : AForm()
+RobotomyRequestForm::RobotomyRequestForm(std::string t) : AForm(t, 0, 72, 45)
 {
 	std::cout << "Robotomy parameter constructor called" << std::endl;
-	std::cout << t << std::endl;
 	this->target = t;
-	std::cout  <<  target << std::endl;
 }
 
 
@@ -44,9 +43,9 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 	int	tucson = dis(gen);
 
 	if (this->getSign() == 0)
-		throw "Not  signed";
-	if (executor.getGrade() > 45)
-		AForm::GradeTooLowException();
+		throw AForm::NotSignedException();
+	if (executor.getGrade() > this->getGradeExec())
+		throw AForm::GradeTooLowException();
 	else
 	{
 		std::cout << tucson << std::endl;

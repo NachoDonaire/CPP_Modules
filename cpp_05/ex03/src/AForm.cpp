@@ -9,14 +9,14 @@ AForm::AForm() :  name(""), sign(0), g_sgn(150), g_ex(150)
 AForm::AForm(std::string n, bool sign, int g_sign, int ex) :  name(n), sign(sign), g_sgn(g_sign), g_ex(ex)
 {
 	if (g_sign > 150)
-		AForm::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	else if (g_sign < 1)
-		AForm::GradeTooHighException();
+		throw AForm::GradeTooHighException();
 	//this->g_sgn = g_sign;
 	if (ex > 150)
-		AForm::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	else if (ex < 1)
-		AForm::GradeTooHighException();
+		throw AForm::GradeTooHighException();
 	//this->g_ex = ex;
 }
 
@@ -71,5 +71,5 @@ void	AForm::beSigned(Bureaucrat &b)
 	if (b.getGrade() <= this->getGradeSign())
 		this->signIn();
 	else
-		AForm::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 }

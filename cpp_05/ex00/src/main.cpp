@@ -4,7 +4,7 @@ int	main()
 {
 	try
 	{
-		Bureaucrat b("Jossie", -1);
+		Bureaucrat b("Jossie", 89);
 		Bureaucrat a("Wilkinson", 15);
 		Bureaucrat c(a);
 		std::cout << c << std::endl;

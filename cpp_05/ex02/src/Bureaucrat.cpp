@@ -9,9 +9,9 @@ Bureaucrat::Bureaucrat()
 Bureaucrat::Bureaucrat(std::string n, int g) : name(n)
 {
 	if (g > 150)
-		Bureaucrat::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (g < 1)
-		Bureaucrat::GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	this->grade = g;
 }
 
@@ -46,9 +46,9 @@ void	Bureaucrat::upGrade(int d)
 
 	t = this->grade - d;
 	if (t > 150)
-		Bureaucrat::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (t < 1)
-		Bureaucrat::GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	this->grade = t;
 }
 
@@ -58,9 +58,9 @@ void	Bureaucrat::downGrade(int d)
 
 	t = this->grade + d;
 	if (t > 150)
-		Bureaucrat::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (t < 1)
-		Bureaucrat::GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	this->grade = t;
 }
 
@@ -77,12 +77,6 @@ void	Bureaucrat::signAForm(AForm &f)
 
 void	Bureaucrat::executeAForm(AForm const &form) const
 {
-	try
-	{
 		form.execute(*this);
 		std::cout << *this << " executed " << form << std::endl;
-	}
-	catch (std::string c){
-		std::cout << c;
-	}
 }

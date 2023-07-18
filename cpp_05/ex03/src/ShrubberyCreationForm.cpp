@@ -8,9 +8,8 @@ ShrubberyCreationForm::ShrubberyCreationForm() : AForm()
         this->target = "Default target";
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string t) : AForm()
+ShrubberyCreationForm::ShrubberyCreationForm(std::string t) : AForm(t, 0, 145, 137)
 {
-	std::cout << "Robotomy parameter constructor called" << std::endl;
 	this->target = t;
 }
 
@@ -60,7 +59,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	
 	if (this->getSign() == 0)
 		throw AForm::NotSignedException();
-	if (executor.getGrade() > 137)
+	if (executor.getGrade() > this->getGradeExec())
 		throw AForm::GradeTooLowException();
 	std::ofstream file(this->target + "_shrubbery", std::ofstream::out | std::ofstream::trunc);
 	if (file.is_open())

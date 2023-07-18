@@ -66,5 +66,5 @@ void	Form::beSigned(Bureaucrat &b)
 	if (b.getGrade() <= this->getGradeSign())
 		this->sign = 1;
 	else
-		Form::GradeTooLowException();
+		throw Form::GradeTooLowException();
 }

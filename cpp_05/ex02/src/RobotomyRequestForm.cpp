@@ -7,12 +7,10 @@ RobotomyRequestForm::RobotomyRequestForm() : AForm()
         this->target = "Default target";
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string t) : AForm()
+RobotomyRequestForm::RobotomyRequestForm(std::string t) : AForm(t, 0, 72, 45)
 {
 	std::cout << "Robotomy parameter constructor called" << std::endl;
-	std::cout << t << std::endl;
 	this->target = t;
-	std::cout  <<  target << std::endl;
 }
 
 
@@ -45,7 +43,7 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 
 	if (this->getSign() == 0)
 		throw AForm::NotSignedException();
-	if (executor.getGrade() > 45)
+	if (executor.getGrade() > this->getGradeExec())
 		throw AForm::GradeTooLowException();
 	else
 	{

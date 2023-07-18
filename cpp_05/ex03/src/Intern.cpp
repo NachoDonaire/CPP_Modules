@@ -41,6 +41,6 @@ AForm	*Intern::makeForm(std::string form, std::string target)
 		i++;
 	}
 	if (y == -1)
-		Intern::NoExistingFormException();
+		throw Intern::NoExistingFormException();
 	return cor[y];
 }

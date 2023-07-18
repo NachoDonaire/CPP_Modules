@@ -1,6 +1,6 @@
-SRCS = Bureaucrat.cpp main.cpp AForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp PresidentialPardonForm.cpp
+SRCS = main.cpp ScalarConverter.cpp
 SRDIR = src/
-NAME = tucker
+NAME = ex00
 DSRC = $(addprefix $(SRDIR), $(SRCS))
 ALLC = $(DSRC)
 OBJS = $(DSRC:.cpp=.o)
@@ -10,13 +10,13 @@ RM = rm -rf
 
 all: $(NAME)
 
-#$(OBJS) : $(ALLC)
-#	$(CC) $(CFLAGS) -c $< -o $@
+##$(OBJS) : $(ALLC)
+##	$(CC) $(CFLAGS) -c $< -o $@
 $(NAME) : $(OBJS)
 	$(CC) $(CPPFLAGS) -o $(NAME) $(OBJS)
 
 clean:
-	$(RM) $(OBJS) *_shrubbery
+	$(RM) $(OBJS)
 
 fclean: clean
 	$(RM) $(NAME)
