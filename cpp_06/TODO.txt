@@ -1,0 +1,4 @@
+static methods
+.swp en inc/ex01
+canonico ortodoxa
+añadir un else ex02
