@@ -2,15 +2,7 @@
 
 ScalarConverter::ScalarConverter()
 {
-	this->c = 0;
-	this->i = 0;
-	this->f = 0;
-	this->d = 0;
-	this->infinite = 0;
-	this->isfloat = 0;
-	this->nw = 0;
-	this->nan = 0;
-        std::cout << "ScalarConverter constructor called" << std::endl;
+
 }
 
 ScalarConverter::ScalarConverter(const ScalarConverter &a)
@@ -27,16 +19,21 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &f)
 {
         if (this != &f)
         {
-        	return *this;
+
         }
         return *this;
 }
 
-int	ScalarConverter::isDigit(std::string& s)
+int	ScalarConverter::isDigit(std::string& s, bool *nullchar)
 {
 	int	i;
 
 	i = 0;
+	if (s[i] == '-')
+	{
+		i++;
+		*nullchar = 1;
+	}
 	while (s[i])
 	{
 		if (s[i] == '.')
@@ -50,22 +47,22 @@ int	ScalarConverter::isDigit(std::string& s)
 	}
 	return (1);
 }
-
+/*
 void	ScalarConverter::setChar(char t)
 {
-	this->c = t;
+	ScalarConverter::c = t;
 }
 void	ScalarConverter::setInt(int t)
 {
-	this->i = t;
+	i = t;
 }
 void	ScalarConverter::setFloat(float t)
 {
-	this->f = t;
+	f = t;
 }
 void	ScalarConverter::setDouble(double t)
 {
-	this->d = t;
+	d = t;
 }
 
 char	ScalarConverter::getChar() const
@@ -108,75 +105,100 @@ bool ScalarConverter::getNaN() const
 	return this->nan;
 }
 
+bool	ScalarConverter::getNullchar() const
+{
+	return this->nullchar;
+}
+*/
 void	ScalarConverter::convert(std::string str)
 {
+	char	c;
+	int		i;
+	float	f;
+	double	d;
+	bool	infinite;
+	bool	nullchar;
+	bool	isfloat;
+	bool	nan;
+	bool	nw;
+
+	c = ' ';
+	i = 0;
+	f = 0;
+	d = 0;
+	infinite = 0;
+	nan = 0;
+	nullchar= 0;
+	isfloat = 0;
+	nw = 0;
 	try{
-		if (str == "nanf" || str == "nan" || str == "inf")
+		if (str == "nanf" || str == "nan" || str == "inf" || str == "-inf" || str == "inff" || str == "-inff")
 		{
-			this->nan = 1;
-			this->infinite = 1;
-			return ;
+			nan = 1;
+			infinite = 1;
+			return (print_stuff(c, i, f, d, nan, infinite, isfloat, nw, nullchar));
 		}
-		if (ScalarConverter::isDigit(str))
+		if (ScalarConverter::isDigit(str, &nullchar))
 		{
-			if (str.find('.') != std::string::npos)
+			if (std::atof(str.c_str()) >= 2147483647 || std::atof(str.c_str()) <= -2147483648)
+				throw ScalarConverter::InvalidTypeException();
+			else if (str.find('.') != std::string::npos)
 			{
-				this->isfloat = 1;
-				setChar(static_cast<char>(std::atof(str.c_str())));
-				setInt(static_cast<int>(std::atof(str.c_str())));
-				setFloat(static_cast<float>(std::atof(str.c_str())));
-				setDouble(static_cast<double>(std::atof(str.c_str())));
+				isfloat = 1;
+				c = static_cast<char>(std::atof(str.c_str()));
+				i = static_cast<int>(std::atof(str.c_str()));
+				f = static_cast<float>(std::atof(str.c_str()));
+				d = static_cast<double>(std::atof(str.c_str()));
 			}
 			else
 			{
-				setChar(static_cast<char>(std::atoi(str.c_str())));
-				setInt(static_cast<int>(std::atoi(str.c_str())));
-				setFloat(static_cast<float>(std::atoi(str.c_str())));
-				setDouble(static_cast<double>(std::atoi(str.c_str())));
+				c = (static_cast<char>(std::atoi(str.c_str())));
+				i = (static_cast<int>(std::atoi(str.c_str())));
+				f = (static_cast<float>(std::atoi(str.c_str())));
+				d = (static_cast<double>(std::atoi(str.c_str())));
 			}
 
 		}
 		else if (str.size() == 1)
 		{
-				setChar(static_cast<char>(str[0]));
-				setInt(static_cast<int>(str[0]));
-				setFloat(static_cast<float>(str[0]));
-				setDouble(static_cast<double>(str[0]));
+				c = (static_cast<char>(str[0]));
+				i = (static_cast<int>(str[0]));
+				f = (static_cast<float>(str[0]));
+				d = (static_cast<double>(str[0]));
 		}
 		else
 		{
-			this->nw = 1;
+			nw = 1;
 			throw ScalarConverter::InvalidTypeException();
 		}
 	}
 	catch(std::exception& e){
 		std::cout << e.what() << std::endl;
 	}
+	print_stuff(c, i, f, d, nan, infinite, isfloat, nw, nullchar);
 }
 
-std::ostream	&operator<<(std::ostream &os, const ScalarConverter &s)
+void	ScalarConverter::print_stuff(char c, int i, float f, double d, bool nan, bool infinite, bool isfloat, bool nw, bool nullchar)
 {
-	if (s.getNw() == 1)
+	if (nw == 1)
 	{
-		os << "No valid input" << std::endl;
-		return os;
+		std::cout << "No valid input" << std::endl;
+		return ;
 	}
-	if (s.getIsFloat() == 1)
-		os << "char : Non displayable" << std::endl;
-	else if (s.getInfinite() == 1 || s.getNaN() == 1)
-		os << "char : Impossible" << std::endl;
+	if (isfloat == 1 || nullchar == 1)
+		std::cout << "char : Non displayable" << std::endl;
+	else if (infinite == 1 || nan == 1)
+		std::cout << "char : Impossible" << std::endl;
 	else
-		os << "char : " << s.getChar() << std::endl;
-	if (s.getInfinite() == 1 || s.getNaN() == 1)
+		std::cout << "char : " << c << std::endl;
+	if (infinite == 1 || nan == 1)
 	{
-		os << "int : " << "nan"  << std::endl;
-		os << "float : " << "nan" << std::endl;
-		os << "double : " << "nan";
-		return os;
+		std::cout << "int : " << "nan"  << std::endl;
+		std::cout << "float : " << "nan" << std::endl;
+		std::cout << "double : " << "nan" << std::endl;
+		return ;
 	}
-	os << "int : " << s.getInt() << std::endl;
-	os << "float : " << s.getFloat() << std::endl;
-	os << "double : " << s.getDouble();
-
-	return os;
+	std::cout << "int : " << i << std::endl;
+	std::cout << "float : " << f << std::endl;
+	std::cout << "double : " << d << std::endl;
 }

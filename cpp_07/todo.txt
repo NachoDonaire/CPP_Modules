@@ -1,0 +1,1 @@
+1. Solucionar el abort de zsh en el 01 (aparentemente no hace nada)

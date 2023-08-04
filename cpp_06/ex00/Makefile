@@ -1,6 +1,6 @@
 SRCS = main.cpp ScalarConverter.cpp
 SRDIR = src/
-NAME = ex00
+NAME = convert
 DSRC = $(addprefix $(SRDIR), $(SRCS))
 ALLC = $(DSRC)
 OBJS = $(DSRC:.cpp=.o)
