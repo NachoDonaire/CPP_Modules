@@ -1,12 +1,10 @@
 #include <iostream>
 
-template <typename L, size_t N, typename func>
-void	iter( L (&a)[N], int n, func f )
+template <typename L, typename func>
+void	iter( L *a , int n, func f )
 {
 	for (int i = 0; i < n ; i++)
 	{
-		if (!a[i])
-			return ;
 		f(a[i]);
 	}
 }
@@ -18,5 +16,11 @@ void	print_array(L (&a)[N], int n)
 	{
 		std::cout << a[i];
 	}
-	//std::cout << std::endl;
-}	
+	std::cout << std::endl;
+}
+
+template <typename T>
+void	aPrint(T &a)
+{
+	std::cout << a << std::endl;
+}
