@@ -1,4 +1,5 @@
 #include <iter.hpp>
+#include <vector>
 
 void	plus(int &i)
 {
@@ -19,6 +20,10 @@ int	main()
 {
 	int	a[5] = { 1, 2, 3, 4, 5 };
 	char	c[3] = { 'a', 'b', 'c' };
+	std::vector<int> zeta (4, 1); 
+	(void) zeta;
+
+	//::iter(zeta, 3, plus);
 
 	::print_array(a, 5);
 	::print_array(c, 3);
@@ -30,7 +35,5 @@ int	main()
 	std::cout << "-----------iter applied and printInt function ----------------------" << std::endl;
 	::iter(a, 5, plus);
 	::iter(a, 5, printInt);
-	//::iter(a, 3, &aPrint);
-	//::print_array(a, 5);
 	return (0);
 }

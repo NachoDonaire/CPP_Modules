@@ -42,14 +42,19 @@ Array<T>::Array(int n)
 }
 
 template<typename T>
-Array<T>::Array(const Array &a) : t(a.t)
+Array<T>::Array(const Array &a) : n(a.n)
 {
+	this->t = new T[n];
+	for (int i = 0; i < this->size(); i++)
+		this->t[i] = a.t[i];
+
 }
 
 template<typename T>
 Array<T>::~Array()
 {
-	delete this->t;
+	if (this->t)
+		delete this->t;
 }
 
 template<typename T>
@@ -57,7 +62,8 @@ Array<T> &Array<T>::operator=(const Array &f)
 {
         if (this != &f)
         {
-			delete this->t;
+			if (this->t)
+				delete this->t;
 			this->t = f.t;
 			this->n = f.n;
         }
@@ -73,9 +79,12 @@ int	Array<T>::size() const
 template<typename T>
 T	&Array<T>::operator[](int index)
 {
-	if (!this->t[index])
+	if (index < 0 || index >= this->size()) 
+	{
+		std::cout << "index : " << index << std::endl;
 		throw Array::OutOfRangeException();
-	return this->t[index];
+	}
+	return (this->t[index]);
 }
 
 template <typename T>

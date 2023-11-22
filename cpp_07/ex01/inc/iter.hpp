@@ -1,7 +1,7 @@
 #include <iostream>
 
 template <typename L, typename func>
-void	iter( L *a , int n, func f )
+void	iter( L &a , int n, func f )
 {
 	for (int i = 0; i < n ; i++)
 	{
