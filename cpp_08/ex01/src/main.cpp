@@ -2,10 +2,14 @@
 
 int	main()
 {
-	Span<std::vector<int> >	wilkinson(23);
+	Span<std::vector<int> >	wilkinson(5);
 
+	wilkinson.addNumber(23);
+	wilkinson.addNumber(22);
 	wilkinson.randomFill();
+	std::cout << "Shortest Span : " << wilkinson.shortestSpan() << std::endl;
 	std::cout << "Printing wilkinson....." << std::endl;
+	wilkinson.addNumber(23);
 	wilkinson.printSpan();
 	/*
 	std::vector<int>	zuko;

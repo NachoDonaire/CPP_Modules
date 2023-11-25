@@ -1,4 +1,4 @@
-SRCS = main.cpp Span.cpp
+SRCS = main.cpp #Span.cpp
 SRDIR = src/
 NAME = ex01
 DSRC = $(addprefix $(SRDIR), $(SRCS))

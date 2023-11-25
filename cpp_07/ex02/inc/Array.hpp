@@ -87,7 +87,7 @@ T	&Array<T>::operator[](int index)
 	return (this->t[index]);
 }
 
-template <typename T>
+template <typename T >
 void	Array<T>::fillOrder(size_t n)
 {
 	int	u;
