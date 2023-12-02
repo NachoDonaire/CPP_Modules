@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define THE_LIMIT 100
+#define THE_LIMIT 10000
 
 template<typename T>
 class Span {
@@ -23,6 +23,12 @@ class Span {
 			void	randomFill();
 			void	printSpan();
 			int		shortestSpan();
+			int		longestSpan();
+			int		maxElement();
+			int		minElement();
+			class	FullSpanException : public std::exception{
+				virtual const char * what() const throw() { return "Span is full"; }
+			};
 			unsigned int	currentSize();
     		~Span();
     		Span& operator=(const Span &f);
@@ -58,11 +64,11 @@ void	Span<T>::addNumber(int a)
 	unsigned int			n;
 
 	n = 0;
-	for (i = stored.begin(); i != stored.end(); i++)
-		n++;
-	if (n >= N)
-		return ;
-	stored.push_back(a);
+		for (i = stored.begin(); i != stored.end(); i++)
+			n++;
+		if (n >= N)
+			throw Span::FullSpanException();
+		stored.push_back(a);
 }
 
 template<typename T>
@@ -88,39 +94,40 @@ void	Span<T>::randomFill()
 	}
 }
 
-/*
+template<typename T>
+int	Span<T>::longestSpan()
+{
+	T	a;
+	typename	T::iterator	minValue;
+	typename	T::iterator	maxValue;
+	a = this->stored;
+
+	if (this->N == 0 || this->N == 1 || this->stored.size() == 0)
+		throw Span::FullSpanException();
+	minValue = std::min_element(stored.begin(), stored.end());
+	maxValue = std::max_element(stored.begin(), stored.end());
+	return (*maxValue - *minValue);
+}
+
 template<typename T>
 int	Span<T>::shortestSpan()
 {
 	T	a;
-	typename	T::iterator	minValue;
-	typename	T::iterator	penValue;
+	int	diff;
+	int	rtrn;
+
+	if (this->N == 0 || this->N == 1 || this->stored.size() == 0)
+		throw Span::FullSpanException();
 	a = this->stored;
-
-	minValue = std::min_element(stored.begin(), stored.end());
-	for (unsigned int i = 0; i < this->currentSize(); i++)
+	std::sort(a.begin(), a.end());
+	rtrn = *(a.begin() + 1) - *a.begin();
+	for (typename T::iterator i = a.begin() + 2; i != a.end(); i++)
 	{
-		std::cout << "Value : " << a.at(i) << " ";
-		if (a.at(i) == *minValue)
-		{
-			a.at(i) = *std::max_element(stored.begin(), stored.end());
-			std::cout << a.at(i) << std::endl;
-		}
-
+		diff = *i - *(i - 1);
+		if (diff < rtrn)
+			rtrn = diff;
 	}
-	penValue = std::min_element(a.begin(), a.end());
-	std::cout  << std::endl;
-	std::cout << "----------" << std::endl;
-	std::cout << "penValue : " << *penValue << std::endl;
-	std::cout << "minValue : " << *minValue << std::endl;
-	return (*penValue - *minValue);
-}
-*/
-
-template<typename T>
-int	Span<T>::shortestSpan()
-{
-
+	return rtrn;
 }
 
 template<typename T>
@@ -152,4 +159,15 @@ Span<T> &Span<T>::operator=(const Span &f)
         return *this;
 }
 
+template<typename T>
+int	Span<T>::minElement()
+{
+	return *(std::min_element(this->stored.begin(), this->stored.end()));
+}
+
+template<typename T>
+int	Span<T>::maxElement()
+{
+	return *(std::max_element(this->stored.begin(), this->stored.end()));
+}
 #endif

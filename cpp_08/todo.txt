@@ -1,0 +1,1 @@
+Mirar constructor copia y operador '='
