@@ -1,6 +1,6 @@
-SRCS = main.cpp
+SRCS = stacky.cpp
 SRDIR = src/
-NAME = ex00
+NAME = stacky
 DSRC = $(addprefix $(SRDIR), $(SRCS))
 ALLC = $(DSRC)
 OBJS = $(DSRC:.cpp=.o)

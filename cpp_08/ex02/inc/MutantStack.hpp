@@ -6,6 +6,7 @@
 #include <iostream>
 #include <deque>
 #include <vector>
+#include <list>
 
 template<typename T, class C = std::deque<T> >
 class MutantStack 
@@ -14,26 +15,27 @@ class MutantStack
 		C	stored;
  	public:
     		MutantStack();
-    		MutantStack(MutantStack &f);
+    		MutantStack(MutantStack<T, C> &f);
     		~MutantStack();
 			C	getStored();
-			//MutantStack	getThis();
-			class	iterator : public std::iterator<std::input_iterator_tag, T, long, const long *, long>{
+			class	iterator { 
 				private:
-					MutantStack	ms;
-					C	s;
-					T	*i;
-					int	tucker;
+					typename C::iterator	it;
 				public:
-				///iterator() {}
-				iterator(int wee, MutantStack<T, C> f) : ms(f),  s(f.stored), tucker(wee) {fillT();}
-				void	fillT(){i = new T[ms.getStored().size()];for (unsigned long it = 0; it < ms.getStored().size(); it++){i[it] = ms.getStored()[it];}}
-				T	operator*() const {return i[tucker];}
-				//iterator	operator++() {
-				//iterator	&operator++(){stored
+				iterator(typename C::iterator i) : it(i) {}
+				iterator()   {}
+
+				T	&operator*() const {return *it;}
+				iterator	&operator++() {it++; return *this;}
+				iterator	&operator--() {it--; return *this;}
+				iterator	operator++(int) {iterator tmp = *this; ++(*this);return tmp;}
+				iterator	operator--(int) {iterator tmp = *this; --(*this);return tmp;}
+				bool operator!=(const iterator& other) const {
+            return it != other.it;}
+				bool operator==(const iterator& other) const {
+            return it == other.it;}
 					
 			};
-
 
     		MutantStack& operator=(const MutantStack &f);
 			T		top();
@@ -41,8 +43,9 @@ class MutantStack
 			void	pop();
 			bool	empty();
 			size_t	size();
-			MutantStack<T, C>::iterator	begin();
-			MutantStack<T, C>::iterator	end();
+			typename C::iterator	begin() { return stored.begin() ;};
+			typename C::iterator	end() { return stored.end() ;};
+			//bool			const operator!=(const MutantStack &f) {if (this->it != f.it){return 0;}return 1;}
 };
 
 
@@ -52,7 +55,7 @@ MutantStack<T, C>::MutantStack()
 }
 
 template<typename T, typename C>
-MutantStack<T, C>::MutantStack(MutantStack &f)
+MutantStack<T, C>::MutantStack(MutantStack<T, C> &f)
 {
 	this->stored = f.stored;
 }
@@ -66,24 +69,22 @@ template<typename T, typename C>
 MutantStack<T, C> &MutantStack<T, C>::operator=(const MutantStack &f)
 {
 	this->stored = f.stored;
-	this->stored = std::move(f.stored);
+	this->stored = move(f.stored);
+}
+/*
+
+template<typename T, typename C>
+typename MutantStack<T, C>::C	MutantStack<T, C>::begin()
+{
+	return stored.begin();
 }
 
 template<typename T, typename C>
-typename MutantStack<T, C>::iterator	MutantStack<T, C>::begin()
+typename MutantStack<T, C>::C	MutantStack<T, C>::end()
 {
-	return iterator(0, *this);
+	return stored.end();
 }
-
-template<typename T, typename C>
-typename MutantStack<T, C>::iterator	MutantStack<T, C>::end()
-{
-	std::cout << "saisss: " << stored.size() << std::endl;
-	MutantStack<T, C>::iterator	was(stored.size() - 1, *this);
-	std::cout << *was << std::endl;
-	return was;
-}
-
+*/
 template<typename T, typename C >
 T	MutantStack<T, C>::top()
 {

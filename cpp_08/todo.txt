@@ -1,1 +1,2 @@
 Mirar constructor copia y operador '='
+Hacer ex00

@@ -1,4 +1,4 @@
-SRCS = main.cpp #Span.cpp
+SRCS = main.cpp
 SRDIR = src/
 NAME = ex01
 DSRC = $(addprefix $(SRDIR), $(SRCS))
@@ -10,8 +10,8 @@ RM = rm -rf
 
 all: $(NAME)
 
-#$(OBJS) : $(ALLC)
-#	$(CC) $(CFLAGS) -c $< -o $@
+##$(OBJS) : $(ALLC)
+##	$(CC) $(CFLAGS) -c $< -o $@
 $(NAME) : $(OBJS)
 	$(CC) $(CPPFLAGS) -o $(NAME) $(OBJS)
 
