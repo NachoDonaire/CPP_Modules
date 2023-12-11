@@ -71,20 +71,7 @@ MutantStack<T, C> &MutantStack<T, C>::operator=(const MutantStack &f)
 	this->stored = f.stored;
 	this->stored = move(f.stored);
 }
-/*
 
-template<typename T, typename C>
-typename MutantStack<T, C>::C	MutantStack<T, C>::begin()
-{
-	return stored.begin();
-}
-
-template<typename T, typename C>
-typename MutantStack<T, C>::C	MutantStack<T, C>::end()
-{
-	return stored.end();
-}
-*/
 template<typename T, typename C >
 T	MutantStack<T, C>::top()
 {
@@ -104,13 +91,7 @@ bool	MutantStack<T, C>::empty()
 		return 1;
 	return 0;
 }
-/*
-template<typename T, typename C >
-C	MutantStack<T, C>::getThis()
-{
-	return this;
-}
-*/
+
 template<typename T, typename C >
 C	MutantStack<T, C>::getStored()
 {

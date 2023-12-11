@@ -20,7 +20,12 @@ int	main()
 	a.push_back(67);
 
 	std::cout << easyfind(a, 3) << std::endl;
-
+	try{
+		std::cout << easyfind(a, 1) << std::endl;
+	}
+	catch(std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 	return (0);
-
 }

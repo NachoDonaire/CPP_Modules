@@ -3,10 +3,12 @@
 
 #include <iostream>
 #include <vector>
-#include <algorithm>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <deque>
+#include <algorithm>
+#include <list>
 
 #define THE_LIMIT 10000
 
@@ -66,8 +68,9 @@ void	Span<T>::addNumber(int a)
 	n = 0;
 		for (i = stored.begin(); i != stored.end(); i++)
 			n++;
-		if (n >= N)
+		if (n > this->N)
 			throw Span::FullSpanException();
+		std::cout << a << std::endl;
 		stored.push_back(a);
 }
 
@@ -117,7 +120,10 @@ int	Span<T>::shortestSpan()
 	int	rtrn;
 
 	if (this->N == 0 || this->N == 1 || this->stored.size() == 0)
+	{
+		std::cout << "aaaaaa";
 		throw Span::FullSpanException();
+	}	
 	a = this->stored;
 	std::sort(a.begin(), a.end());
 	rtrn = *(a.begin() + 1) - *a.begin();
@@ -155,6 +161,8 @@ Span<T> &Span<T>::operator=(const Span &f)
 {
         if (this != &f)
         {
+		this->N = f.N;
+		this->stored = f.stored;
         }
         return *this;
 }

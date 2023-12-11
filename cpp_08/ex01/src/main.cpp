@@ -38,14 +38,14 @@ int	main()
 	}
 
 	{
-Span<std::vector<int> > sp = Span<std::vector<int> >(5);
+Span<std::deque<int> > sp = Span<std::deque<int> >(6);
 sp.addNumber(6);
 sp.addNumber(3);
 sp.addNumber(17);
 sp.addNumber(9);
 sp.addNumber(11);
-std::cout << sp.shortestSpan() << std::endl;
-std::cout << sp.longestSpan() << std::endl;
+std::cout << "last shorter: " << sp.shortestSpan() << std::endl;
+std::cout << "last larger: " << sp.longestSpan() << std::endl;
 	}
 	//std::cout << "Printing wilkinson....." << std::endl;
 	//wilkinson.addNumber(23);
