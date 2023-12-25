@@ -7,14 +7,15 @@
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
-
+#include <unistd.h>
+#define	RATIO	0.3
 
 
 class BitcoinExchange
 {
 	private:
 		std::string			fileName;
-		std::map<std::string, float>	storedData;
+		std::map<std::string, std::string>	storedData;
  	public:
     		BitcoinExchange();
     		BitcoinExchange(std::string file);
@@ -24,8 +25,8 @@ class BitcoinExchange
 			int	errorManagement(int key);
 			int	parseFile();
 			std::string getFileName();
-		std::string	parseDate(std::string date);
-		std::string	parseValue(std::string value);
+		int	parseDate(std::string date);
+		int	parseValue(std::string value);
 		void		printData();
 };
 

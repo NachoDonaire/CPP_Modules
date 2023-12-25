@@ -45,7 +45,7 @@ std::string BitcoinExchange::getFileName()
 	return this->fileName;
 }
 
-std::string BitcoinExchange::parseDate(std::string	date)
+int	BitcoinExchange::parseDate(std::string	date)
 {
 	std::string		n;
 	std::istringstream	stream(date);
@@ -57,31 +57,33 @@ std::string BitcoinExchange::parseDate(std::string	date)
 	{
 		int	namba = atoi(Date.c_str());
 		if (atoi(Date.c_str()) == 0)
-			return "nan";
+			return 0;
 		if (i == 1)
 		{
 			if (namba > 12 || namba < 0)
-				return "nan";
+				return 0;
 		}
 		else if (i == 2)
 		{
 			if (namba > 31 || namba < 0)
-				return "nan";
+				return 0;
 		}
 		i++;
 	}
 	if (i != 3)
-		return "nan";
-	return date;
+		return 0;
+	return 1;
 }
 
-std::string BitcoinExchange::parseValue(std::string	value)
+int BitcoinExchange::parseValue(std::string	value)
 {
 	if (atof(value.c_str()) == 0.0 && value != "0")
-		return "nan";
-	if (atof (value.c_str()) < 0.0 || atof(value.c_str()) > 1000)
-		return "nan";
-	return value;
+		return 0;
+	if (atof (value.c_str()) < 0.0 || atof(value.c_str()) > 1000.0)
+	{
+		return 0;
+	}
+	return 1;
 }
 
 int	BitcoinExchange::parseFile()
@@ -102,20 +104,20 @@ int	BitcoinExchange::parseFile()
 		while (std::getline(stream, word, '|'))
 		{
 			if (type == 0)
-			{
-				//std::cout << date << std::endl;
-				date = this->parseDate(word);
-			}
+				date = word;
+				//date = this->parseDate(word);
 			else if (type == 1)
-				value = this->parseValue(word);
-			if (date  == "nan" || value == "nan")
-			{
-				std::cout << "Wrong file format" << std::endl;
-				return (1);
-			}
+				value = word;
+				//value = this->parseValue(word);
 			type++;
-		}
-		this->storedData.insert(std::pair<std::string, float>(date, atof(value.c_str())));
+		}/*
+		if (date  == "nan")// || value == "nan")
+			this->storedData.insert(std::pair<std::string, std::string>(date, 0.0));
+			
+		else if (value == "nan")
+			this->storedData.insert(std::pair<std::string, std::string>(value, 0.0));
+		else*/
+		this->storedData.insert(std::pair<std::string, std::string>(date, value));
 		type = 0;
 	}
 	return (0);
@@ -123,6 +125,31 @@ int	BitcoinExchange::parseFile()
 
 void	BitcoinExchange::printData()
 {
-	for (std::map<std::string, float>::iterator i = this->storedData.begin(); i != storedData.end(); i++)
-		std::cout << "Date: " << i->first << " -- Value: " << i->second << std::endl;
+	int	offvalue;
+	std::string	nan = "nan";
+
+	offvalue = 0;
+	(void)offvalue;
+	for (std::map<std::string, std::string>::iterator i = this->storedData.begin(); i != storedData.end(); i++)
+	{
+		//std::cout << i->first << " --- " << i->second <<" ee"<< this->storedData.size() << std::endl;
+		if (this->parseValue(i->second) == 0 || this->parseDate(i->first) == 0)
+			std::cout << "Not valid input" << std::endl;
+		else
+		{
+			offvalue = RATIO * atof(i->second.c_str());
+			std::cout << i->first << " => " << i->second << " = " << offvalue << std::endl;
+		}
+		/*if (i->first == nan) 
+		{
+			std::cout << "a" << storedData.size() << std::endl;
+			std::cout << "Not valid input" << std::endl;
+		}*/
+		/*
+		else
+		{
+			offvalue = RATIO * i->second;
+			std::cout << i->first << " => " << i->second << " = " << offvalue << std::endl;
+		}*/
+	}
 }
