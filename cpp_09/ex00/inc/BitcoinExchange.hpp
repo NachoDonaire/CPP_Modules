@@ -28,6 +28,7 @@ class BitcoinExchange
 		int	parseDate(std::string date);
 		int	parseValue(std::string value);
 		void		printData();
+		void		printStoredData();
 };
 
 #endif

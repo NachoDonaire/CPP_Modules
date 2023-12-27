@@ -9,7 +9,9 @@ int	main(int arg, char **args)
 	}
 	std::string file(args[1]);
 	BitcoinExchange	be(file);
-	std::cout << be.getFileName() << std::endl;
+	//std::cout << be.getFileName() << std::endl;
 	be.printData();
+	//std::cout << "----------" << std::endl;
+	//be.printStoredData();
 	return (0);
 }
