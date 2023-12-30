@@ -17,6 +17,7 @@ class RPN
 {
 	private:
 		std::stack<std::string>	stak;
+		std::stack<std::string>	off;
 		int		error;
 		int		signs;
  	public:
@@ -27,7 +28,11 @@ class RPN
     		RPN& operator=(const RPN &f);
 		int		result();
 		int		parseSigns(char *s);
-		int		operate(std::stack<int> stored, std::string oper);
+		int		parser(std::string args);
+		void	printStak();
+		int		operate();
+		void	rotateStak();
+		int		isSign(std::string ss);
 };
 
 #endif

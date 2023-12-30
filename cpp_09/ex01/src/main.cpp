@@ -10,6 +10,6 @@ int	main(int arg, char **args)
 
 	RPN	rpn(args);
 
-	std::cout << "Result: " << rpn.result() << std::endl;
+	rpn.printStak();
 	return (0);
 }
