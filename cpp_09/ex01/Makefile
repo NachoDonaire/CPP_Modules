@@ -1,4 +1,4 @@
-SRCS = main.cpp RPN.cpp
+SRCS = RPN.cpp main.cpp
 SRDIR = src/
 NAME = RPN
 DSRC = $(addprefix $(SRDIR), $(SRCS))

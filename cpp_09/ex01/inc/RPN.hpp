@@ -3,36 +3,20 @@
 
 #include <iostream>
 #include <stack>
-#include <stdlib.h>
-#include <sstream>
-
-enum	operators{
-	DOT,
-	SUM,
-	MIN,
-	DIV
-};
 
 class RPN
 {
 	private:
-		std::stack<std::string>	stak;
-		std::stack<std::string>	off;
+		std::stack<int>	stak;
+		int		sol;
 		int		error;
-		int		signs;
  	public:
     		RPN();
+    		void	result();
     		RPN(char **args);
     		RPN(const RPN &f);
     		~RPN();
     		RPN& operator=(const RPN &f);
-		int		result();
-		int		parseSigns(char *s);
-		int		parser(std::string args);
-		void	printStak();
-		int		operate();
-		void	rotateStak();
-		int		isSign(std::string ss);
 };
 
 #endif

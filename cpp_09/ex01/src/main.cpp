@@ -1,15 +1,17 @@
 #include <RPN.hpp>
 
-int	main(int arg, char **args)
+int main(int arg, char **args)
 {
-	if (arg == 1)
+	if (arg <= 1)
 	{
-		std::cout << "Not args provided" << std::endl;
+		std::cout << "No args provided" << std::endl;
 		return 0;
 	}
-
+	else if (arg > 2)
+	{
+		std::cout << "Too much arguments, please write expression in just one arg" << std::endl;
+		return 0;
+	}
 	RPN	rpn(args);
-
-	rpn.printStak();
-	return (0);
+	rpn.result();
 }
