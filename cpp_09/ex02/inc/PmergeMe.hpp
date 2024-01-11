@@ -4,11 +4,14 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <cstdlib>
+#include <iterator>
 
 class PmergeMe
 {
 	private:
 		std::vector<int>	vecA;
+		std::vector<int>	vecB;
 		std::list<int>		lstA;
 		int					error;
  	public:
@@ -18,8 +21,12 @@ class PmergeMe
     		~PmergeMe();
     		PmergeMe& operator=(const PmergeMe &f);
 			void	mergeInsertVector();
-			void	printVec();
-			int	isVecSorted();
+			void	printVec(std::vector<int> vec);
+			int	isVecSorted(std::vector<int> vec);
+			int	recursiveSortVec();
+			void	merge();
+			void	insert();
+			std::vector<int>	&getVec();
 };
 
 #endif

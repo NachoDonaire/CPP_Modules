@@ -7,7 +7,7 @@ PmergeMe::PmergeMe()
 
 PmergeMe::PmergeMe(char **args)
 {
-	int	i = 0;
+	int	i = 1;
 
 	this->error = 0;
 	while (args[i])
@@ -20,13 +20,14 @@ PmergeMe::PmergeMe(char **args)
 				this->error = 1;
 			y++;
 		}
-		if (this->error != 0)
+		if (this->error == 0)
 			{
 				vecA.push_back(atoi(num.c_str()));
 				lstA.push_back(atoi(num.c_str()));
 			}
 		i++;
 	}
+	//this->recursiveSortVec(this->vecA);
 }
 
 PmergeMe::PmergeMe(const PmergeMe &f)
@@ -50,37 +51,167 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &f)
         return *this;
 }
 
-int	PmergeMe::isVecSorted()
+int	PmergeMe::isVecSorted(std::vector<int> vec)
 {
-	std::vector<int>::iterator beg = this->vecA.begin();
+	if (vec.size() == 1)
+		return 1;
+	std::vector<int>::iterator beg = vec.begin();
+	std::vector<int>::iterator i = vec.begin() + 1;
 
 	int	y = *beg;
 
-	for (std::vector<int>::iterator i = this->vecA.begin()++; i != this->vecA.end(); i++)
+	while (i != vec.end())
 	{
-		//std::cout << "y : " << y << "i : " << *i << std::endl;
 		if (y < *i)
 			y = *i;
 		else
 			return (0);
+		i++;
 	}
 	return (1);
 }
 
 
-void	PmergeMe::printVec()
+void	PmergeMe::printVec(std::vector<int> vec)
 {
 	std::cout << "VECTOR" << std::endl;
-	for (std::vector<int>::iterator i = this->vecA.begin(); i != this->vecA.end(); i++)
+	for (std::vector<int>::iterator i = vec.begin(); i != vec.end(); i++)
 		std::cout << *i << std::endl;
 }
+
+std::vector<int>	&PmergeMe::getVec()
+{
+	return this->vecA;
+}
+
+int	PmergeMe::recursiveSortVec()
+{
+	std::vector<int> sorted;
+
+
+	while (!vecB.empty())
+	{
+		std::vector<int>::iterator i = vecB.begin();
+		std::vector<int>::iterator y = i;
+		while (i != vecB.end())
+		{
+			if (*y > *i)
+				y = i;
+
+			i++;
+		}
+		sorted.push_back(*y);
+		vecB.erase(y);
+		
+	}
+	vecB = sorted;
+	//this->printVec(vecB);
+
+	return 0;
+
+}
+
+void	PmergeMe::merge()
+{
+	size_t	z = 0;
+	size_t	size = vecA.size();
+
+
+	if (vecA.size() % 2 == 1)
+	{
+		vecB.insert(vecB.begin(), *(vecA.begin()));
+		vecA.erase(vecA.begin());
+	}
+	std::vector<int>::iterator	i = vecA.begin();
+	std::vector<int>::iterator	y = vecA.begin() + 1;
+	//std::cout << "tucsoni : " << *i << "tuckery : " << *y << std::endl;
+	while (vecA.size() > size / 2)
+	{
+	//std::cout << "tucsoni : " << *i << "tuckery : " << *y << std::endl;
+		if (*i < *y)
+		{
+			vecB.push_back(*y);
+			vecA.erase(y);
+		}
+		else
+		{
+			vecB.push_back(*i);
+			vecA.erase(i);
+		}
+		i++;
+		y = i + 1;
+		z++;
+	}
+	this->recursiveSortVec();
+	//std::cout << "SIZE B: " << vecB.size() << std::endl;
+	//this->printVec(vecB);
+	//std::cout << "SIZE A: " << vecA.size() << std::endl;
+	//this->printVec(vecA);
+}
+
+
+void	PmergeMe::insert()	
+{
+	printVec(vecB);
+	//printVec(vecA);
+	while (!vecA.empty())
+	{
+		int	right;
+		/*
+		if (vecB.size() % 2 == 1)
+			right = (vecB.size());
+		else
+			*/
+			right = (vecB.size());
+
+		int	left = 0;
+		std::vector<int>::iterator	i = this->vecA.begin();
+
+		int	mid ;
+			//std::cout << "a -- >"<< left << "b --> " << right << std::endl;
+			//std::cout << "ee " << mid << std::endl;
+			mid = left + (right - left) / 2;
+		while (left < right)
+		{
+		//	std::cout << "a -- >"<< left << "b --> " << right << std::endl;
+		//	std::cout << "ee " << mid << std::endl;
+			mid = left + (right - left) / 2;
+			if (vecB[mid] < *i)
+				left = mid + 1;
+			else if (vecB[mid] >= *i)
+				right = mid;
+
+		}
+		//std::cout << "weeEE --- " << *i << "waaaAA -- " << mid << std::endl;
+		std::vector<int>::iterator	y;
+		//if (size_t(mid + 1) == vecB.size() || mid == 0)
+			y = vecB.begin() + left;
+		//else
+		//	y = vecB.begin() + mid + 1;
+		vecB.insert(y, *i);
+		vecA.erase(i);
+		//this->printVec(vecB);
+	}
+	vecA = vecB;
+}
+
+
+
+			
+
+
+
+
+
+
+
 
 void	PmergeMe::mergeInsertVector()
 {
 	std::vector<int>	aux;	
 	(void)aux;
+	//this->merge(aux);
+	//this->insert(aux);
+	//this->merge();
 
-	//std::vector<int>::iterator beg = this->vecA.begin();
-	//std::vector<int>::iterator end = this->vecA.end();
-	std::cout << "is sorted" << this->isVecSorted();
 }
