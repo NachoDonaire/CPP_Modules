@@ -11,11 +11,11 @@ int	main(int arg, char **args)
 	PmergeMe	me(args);
 	//std::cout << "SORT : " << me.isVecSorted(me.getVec()) << std::endl;
 	//me.recursiveSortVec(me.getVec());
-	me.merge();
-	me.insert();
-	if (me.isVecSorted(me.getVec()))
-		std::cout << "YEESS!!" << std::endl;
-	me.printVec(me.getVec());
+	//me.merge();
+	//me.insert();
+	//if (me.isVecSorted(me.getVec()))
+	//	std::cout << "YEESS!!" << std::endl;
+	//me.printVec(me.getVec());
 
 	return (0);
 }

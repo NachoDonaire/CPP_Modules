@@ -27,6 +27,7 @@ PmergeMe::PmergeMe(char **args)
 			}
 		i++;
 	}
+	printList(lstA);
 	//this->recursiveSortVec(this->vecA);
 }
 
@@ -71,6 +72,25 @@ int	PmergeMe::isVecSorted(std::vector<int> vec)
 	return (1);
 }
 
+int	PmergeMe::isListSorted(std::list<int> vec)
+{
+	if (vec.size() == 1)
+		return 1;
+	std::list<int>::iterator beg = vec.begin();
+	std::list<int>::iterator i = vec.begin(); i++;
+
+	int	y = *beg;
+
+	while (i != vec.end())
+	{
+		if (y < *i)
+			y = *i;
+		else
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 void	PmergeMe::printVec(std::vector<int> vec)
 {
@@ -79,9 +99,21 @@ void	PmergeMe::printVec(std::vector<int> vec)
 		std::cout << *i << std::endl;
 }
 
+void	PmergeMe::printList(std::list<int> vec)
+{
+	std::cout << "LIST" << std::endl;
+	for (std::list<int>::iterator i = vec.begin(); i != vec.end(); i++)
+		std::cout << *i << std::endl;
+}
+
 std::vector<int>	&PmergeMe::getVec()
 {
 	return this->vecA;
+}
+
+std::list<int>	&PmergeMe::getList()
+{
+	return this->lstA;
 }
 
 int	PmergeMe::recursiveSortVec()
@@ -196,6 +228,51 @@ void	PmergeMe::insert()
 }
 
 
+void	PmergeMe::insertList()	
+{
+	printVec(lstB);
+	//printVec(lstA);
+	while (!lstA.empty())
+	{
+		int	right;
+		/*
+		if (lstB.size() % 2 == 1)
+			right = (lstB.size());
+		else
+			*/
+			right = (lstB.size());
+
+		int	left = 0;
+		std::list<int>::iterator	i = this->lstA.begin();
+
+		int	mid ;
+			//std::cout << "a -- >"<< left << "b --> " << right << std::endl;
+			//std::cout << "ee " << mid << std::endl;
+			mid = left + (right - left) / 2;
+		while (left < right)
+		{
+		//	std::cout << "a -- >"<< left << "b --> " << right << std::endl;
+		//	std::cout << "ee " << mid << std::endl;
+			mid = left + (right - left) / 2;
+			if (lstB[mid] < *i)
+				left = mid + 1;
+			else if (lstB[mid] >= *i)
+				right = mid;
+
+		}
+		//std::cout << "weeEE --- " << *i << "waaaAA -- " << mid << std::endl;
+		std::list<int>::iterator	y;
+		//if (size_t(mid + 1) == lstB.size() || mid == 0)
+			y = lstB.begin() + left;
+		//else
+		//	y = lstB.begin() + mid + 1;
+		lstB.insert(y, *i);
+		lstA.erase(i);
+		//this->printVec(lstB);
+	}
+	lstA = lstB;
+}
+
 
 			
 
@@ -206,7 +283,7 @@ void	PmergeMe::insert()
 
 
 
-void	PmergeMe::mergeInsertVector()
+void	PmergeMe::mergeInsert()
 {
 	std::vector<int>	aux;	
 	(void)aux;

@@ -20,13 +20,17 @@ class PmergeMe
     		PmergeMe(const PmergeMe &f);
     		~PmergeMe();
     		PmergeMe& operator=(const PmergeMe &f);
-			void	mergeInsertVector();
+			void	mergeInsert();
 			void	printVec(std::vector<int> vec);
+			void	printList(std::list<int> vec);
 			int	isVecSorted(std::vector<int> vec);
+			int	isListSorted(std::list<int> vec);
 			int	recursiveSortVec();
 			void	merge();
 			void	insert();
+			void	insertList();
 			std::vector<int>	&getVec();
+			std::list<int>	&getList();
 };
 
 #endif
