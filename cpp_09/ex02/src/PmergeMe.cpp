@@ -27,7 +27,7 @@ PmergeMe::PmergeMe(char **args)
 			}
 		i++;
 	}
-	printList(lstA);
+	//printList(lstA);
 	//this->recursiveSortVec(this->vecA);
 }
 
@@ -143,6 +143,35 @@ int	PmergeMe::recursiveSortVec()
 
 }
 
+int	PmergeMe::recursiveSortLst()
+{
+	std::list<int> sorted;
+
+
+	while (!lstB.empty())
+	{
+		std::list<int>::iterator i = lstB.begin();
+		std::list<int>::iterator y = i;
+		while (i != lstB.end())
+		{
+			if (*y > *i)
+				y = i;
+
+			i++;
+		}
+		sorted.push_back(*y);
+		lstB.erase(y);
+		
+	}
+	lstB = sorted;
+	//this->printVec(lstB);
+
+	return 0;
+
+}
+
+
+
 void	PmergeMe::merge()
 {
 	size_t	z = 0;
@@ -151,6 +180,7 @@ void	PmergeMe::merge()
 
 	if (vecA.size() % 2 == 1)
 	{
+		std::cout << "weeee" << std::endl;
 		vecB.insert(vecB.begin(), *(vecA.begin()));
 		vecA.erase(vecA.begin());
 	}
@@ -181,10 +211,49 @@ void	PmergeMe::merge()
 	//this->printVec(vecA);
 }
 
-
-void	PmergeMe::insert()	
+void	PmergeMe::mergeList()
 {
-	printVec(vecB);
+	size_t	z = 0;
+	size_t	size = lstA.size();
+
+
+	if (lstA.size() % 2 == 1)
+	{
+		lstB.insert(lstB.begin(), *(lstA.begin()));
+		lstA.erase(lstA.begin());
+	}
+	std::list<int>::iterator	i = lstA.begin();
+	std::list<int>::iterator	y = i; y++;
+	//std::cout << "tucsoni : " << *i << "tuckery : " << *y << std::endl;
+	while (lstA.size() > size / 2)
+	{
+	//std::cout << "tucsoni : " << *i << "tuckery : " << *y << std::endl;
+		if (*i < *y)
+		{
+			lstB.push_back(*y);
+			lstA.erase(y);
+		}
+		else
+		{
+			lstB.push_back(*i);
+			lstA.erase(i);
+		}
+		i++;
+		y = i; y++;
+		z++;
+	}
+	this->recursiveSortLst();
+	//std::cout << "SIZE B: " << lstB.size() << std::endl;
+	//this->printVec(lstB);
+	//std::cout << "SIZE A: " << lstA.size() << std::endl;
+	//this->printVec(lstA);
+}
+
+
+
+void	PmergeMe::insertie()	
+{
+	//printVec(vecB);
 	//printVec(vecA);
 	while (!vecA.empty())
 	{
@@ -227,23 +296,27 @@ void	PmergeMe::insert()
 	vecA = vecB;
 }
 
+void	PmergeMe::adjustI(int mid, std::list<int>::iterator &lst)
+{
+	int							y = 0;
+
+	while (y < mid)
+	{
+		y++;
+		lst++;
+	}
+}
 
 void	PmergeMe::insertList()	
 {
-	printVec(lstB);
-	//printVec(lstA);
 	while (!lstA.empty())
 	{
 		int	right;
-		/*
-		if (lstB.size() % 2 == 1)
-			right = (lstB.size());
-		else
-			*/
-			right = (lstB.size());
+		right = (lstB.size());
 
 		int	left = 0;
 		std::list<int>::iterator	i = this->lstA.begin();
+		std::list<int>::iterator	y;
 
 		int	mid ;
 			//std::cout << "a -- >"<< left << "b --> " << right << std::endl;
@@ -252,23 +325,21 @@ void	PmergeMe::insertList()
 		while (left < right)
 		{
 		//	std::cout << "a -- >"<< left << "b --> " << right << std::endl;
-		//	std::cout << "ee " << mid << std::endl;
+			//std::cout << "ee " << mid << std::endl;
 			mid = left + (right - left) / 2;
-			if (lstB[mid] < *i)
+			std::list<int>::iterator y = lstB.begin();
+			adjustI(mid, y);
+			if ( *y < *i)
 				left = mid + 1;
-			else if (lstB[mid] >= *i)
+			else if (*y>= *i)
 				right = mid;
 
 		}
-		//std::cout << "weeEE --- " << *i << "waaaAA -- " << mid << std::endl;
-		std::list<int>::iterator	y;
-		//if (size_t(mid + 1) == lstB.size() || mid == 0)
-			y = lstB.begin() + left;
-		//else
-		//	y = lstB.begin() + mid + 1;
-		lstB.insert(y, *i);
+		//printList(lstB);
+		std::list<int>::iterator we = lstB.begin();
+		adjustI(left, we);
+		lstB.insert(we, *i);
 		lstA.erase(i);
-		//this->printVec(lstB);
 	}
 	lstA = lstB;
 }
@@ -288,7 +359,10 @@ void	PmergeMe::mergeInsert()
 	std::vector<int>	aux;	
 	(void)aux;
 	//this->merge(aux);
-	//this->insert(aux);
-	//this->merge();
+	this->merge();
+	this->insertie();
+	this->mergeList();
+	this->insertList();
+	//this->printVec(vecB);
 
 }

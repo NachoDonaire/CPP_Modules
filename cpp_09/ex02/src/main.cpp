@@ -12,10 +12,13 @@ int	main(int arg, char **args)
 	//std::cout << "SORT : " << me.isVecSorted(me.getVec()) << std::endl;
 	//me.recursiveSortVec(me.getVec());
 	//me.merge();
-	//me.insert();
+	me.mergeInsert();
 	//if (me.isVecSorted(me.getVec()))
 	//	std::cout << "YEESS!!" << std::endl;
-	//me.printVec(me.getVec());
+	me.printList(me.getList());
+	me.printVec(me.getVec());
+
+	return (0);
 
 	return (0);
 }

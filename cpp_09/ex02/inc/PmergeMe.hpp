@@ -13,6 +13,7 @@ class PmergeMe
 		std::vector<int>	vecA;
 		std::vector<int>	vecB;
 		std::list<int>		lstA;
+		std::list<int>		lstB;
 		int					error;
  	public:
     		PmergeMe();
@@ -26,11 +27,14 @@ class PmergeMe
 			int	isVecSorted(std::vector<int> vec);
 			int	isListSorted(std::list<int> vec);
 			int	recursiveSortVec();
+			int	recursiveSortLst();
 			void	merge();
-			void	insert();
+			void	mergeList();
+			void	insertie();
 			void	insertList();
 			std::vector<int>	&getVec();
 			std::list<int>	&getList();
+			void	adjustI(int mid, std::list<int>::iterator &lst);
 };
 
 #endif
